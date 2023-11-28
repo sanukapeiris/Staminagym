@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2023-11-28T01:21:39 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Equipment_Report_A4_2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d817051f-3370-4ad6-acc3-899a74c5989e">
+	<parameter name="id" class="java.lang.String"/>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="type" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="178" y="0" width="210" height="25" uuid="b19547e4-d7c6-4238-bcfd-51a39638413d">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Stamina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="55" width="205" height="15" uuid="93681c88-7ac9-417f-a5a9-d366cc9aef86"/>
+				<text><![CDATA[0785603209,Panadura,Private Bus Stand.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="25" width="205" height="15" uuid="30c69dff-9eef-418f-8767-d2abb0461536"/>
+				<text><![CDATA[Galle Road,Panadura.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="40" width="205" height="15" uuid="053d00f6-9f93-46cd-aa41-e20366e4cac2"/>
+				<text><![CDATA[panadura,12500 ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-13" y="0" width="160" height="80" uuid="8ae2bea6-2040-4195-9612-6bd951cbd844"/>
+				<imageExpression><![CDATA["C:\Users\sanuk\IdeaProjects\gym\src\main\resources\ui\Screenshot 2023-11-18 170118.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="166" splitType="Stretch">
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="326" y="20" width="80" height="25" uuid="946f7bd0-73fe-4765-a4da-8d9259014c01"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="328" y="59" width="78" height="21" uuid="40d2e40e-ad4f-4cce-b82f-ccd2d1ae7287"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="328" y="96" width="78" height="24" uuid="e07758c9-b2b9-4c0c-8266-4252d8016de1"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="330" y="129" width="80" height="20" uuid="b257ad92-f878-43c2-991e-b8503c1997e8"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="197" y="23" width="100" height="21" uuid="2ca66af5-52da-4f70-b8fe-c9b756c90e92"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipment ID :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="60" width="124" height="21" uuid="d77f49c3-624b-4252-af63-fa577afcf122"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipment Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="96" width="123" height="21" uuid="4be84bfb-9955-4f42-8c9f-38e6f416781d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipment Type :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="126" width="119" height="21" uuid="7db4368c-8432-4fe4-83ca-09f580454d88"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Equipment Date:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="-9" y="20" width="556" height="36" backcolor="#E6E8E9" uuid="0d8083b7-fb8d-4f76-996b-f219f94cbfe7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="9" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[THANKYOU FOR YOUR BUSINESS]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

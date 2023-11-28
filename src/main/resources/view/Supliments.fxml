@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="810.0" prefWidth="1130.0" style="-fx-background-color: #ECE9E9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gym.controller.Supliment">
+   <children>
+      <Label layoutX="264.0" layoutY="132.0" prefHeight="66.0" prefWidth="286.0" text="Order" textFill="#1a1363">
+         <font>
+            <Font name="System Bold" size="45.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="-1.0" prefHeight="810.0" prefWidth="241.0" style="-fx-background-color: #1A1363;">
+         <children>
+            <HBox layoutX="-1.0" layoutY="450.0" prefHeight="32.0" prefWidth="242.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnhealthreportonaction" prefHeight="31.0" prefWidth="127.0" style="-fx-background-color: #1A1363;" text="Health Report" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-2.0" layoutY="418.0" prefHeight="32.0" prefWidth="243.0" style="-fx-background-color: #1A1363; -fx-background-radius: 15;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btninstructoronaction" prefHeight="31.0" prefWidth="108.0" style="-fx-background-color: #1A1363;" text="Instructor" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-2.0" layoutY="387.0" prefHeight="32.0" prefWidth="243.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnequipmentonaction" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: #1A1363;" text="Equipment" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutY="555.0" prefHeight="32.0" prefWidth="243.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnfeedbackonaction" prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: #1A1363;" text="Feedback" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-1.0" layoutY="355.0" prefHeight="32.0" prefWidth="242.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnpaymentonaction" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #1A1363;" text="Payment" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-1.0" layoutY="323.0" prefHeight="32.0" prefWidth="241.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnMemberaction" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1A1363;" text="Members" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutY="288.0" prefHeight="35.0" prefWidth="240.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnadminonaction" prefHeight="32.0" prefWidth="82.0" style="-fx-background-color: #1A1363;" text="Admin" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="20.0" right="20.0" />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="1.0" layoutY="252.0" prefHeight="40.0" prefWidth="242.0" style="-fx-background-color: #1A1363; -fx-background-radius: 15;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnshedualonaction" prefHeight="60.0" prefWidth="109.0" style="-fx-background-color: #1A1363;" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutY="487.0" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnReportaction" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #1A1363;" text="Report" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <ImageView fitHeight="188.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ui/Screenshot%202023-11-18%20220226.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="-1.0" layoutY="522.0" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 15;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnSupplementsonaction" prefHeight="35.0" prefWidth="133.0" style="-fx-background-color: #ECE9E9;" text="supplements">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="162.0" fitWidth="321.0" layoutX="248.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ui/Screenshot%202023-11-18%20173912.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="267.0" layoutY="227.0" prefHeight="315.0" prefWidth="685.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12;">
+         <children>
+            <Text fill="#1a1363" layoutX="17.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" wrappingWidth="138.99999999999994">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Button layoutX="552.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnsaveonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Save">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="418.0" layoutY="247.0" mnemonicParsing="false" onAction="#btnviewonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="View">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="281.0" layoutY="247.0" mnemonicParsing="false" onAction="#btndeleteonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Delete">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="115.0" layoutY="247.0" mnemonicParsing="false" onAction="#btninventoryonaction" prefHeight="51.0" prefWidth="145.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Inventory">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <TextField fx:id="txtproductqty" layoutX="389.0" layoutY="83.0" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Text fill="#1a1363" layoutX="389.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product QTY" wrappingWidth="138.99999999999994">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="cmbproductname" layoutX="15.0" layoutY="82.0" onAction="#cmbmemberidonaction" prefHeight="31.0" prefWidth="230.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

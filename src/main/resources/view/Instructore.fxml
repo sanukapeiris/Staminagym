@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="root" prefHeight="810.0" prefWidth="1130.0" style="-fx-background-color: #ECE9E9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gym.controller.Instructore">
+    <children>
+        <Label layoutX="264.0" layoutY="132.0" prefHeight="66.0" prefWidth="212.0" text="Instructor" textFill="#1a1363">
+            <font>
+                <Font name="System Bold" size="45.0" />
+            </font>
+        </Label>
+      <AnchorPane layoutX="-1.0" prefHeight="810.0" prefWidth="241.0" style="-fx-background-color: #1A1363;">
+         <children>
+            <HBox layoutX="-1.0" layoutY="450.0" prefHeight="32.0" prefWidth="242.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnhealthreportonaction" prefHeight="31.0" prefWidth="139.0" style="-fx-background-color: #1A1363;" text="Health Report" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-2.0" layoutY="418.0" prefHeight="32.0" prefWidth="243.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 15;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btninstructoronaction" prefHeight="31.0" prefWidth="108.0" style="-fx-background-color: #ECE9E9;" text="Instructor">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-2.0" layoutY="387.0" prefHeight="32.0" prefWidth="243.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnequipmentonaction" prefHeight="31.0" prefWidth="116.0" style="-fx-background-color: #1A1363;" text="Equipment" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutY="555.0" prefHeight="32.0" prefWidth="243.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnfeedbackonaction" prefHeight="31.0" prefWidth="105.0" style="-fx-background-color: #1A1363;" text="Feedback" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-1.0" layoutY="355.0" prefHeight="32.0" prefWidth="242.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnpaymentonaction" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #1A1363;" text="Payment" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="-1.0" layoutY="323.0" prefHeight="32.0" prefWidth="241.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnMemberaction" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: #1A1363;" text="Members" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutY="288.0" prefHeight="35.0" prefWidth="240.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnadminonaction" prefHeight="32.0" prefWidth="82.0" style="-fx-background-color: #1A1363;" text="Admin" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets left="20.0" right="20.0" />
+                     </opaqueInsets>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutX="1.0" layoutY="252.0" prefHeight="40.0" prefWidth="242.0" style="-fx-background-color: #1A1363; -fx-background-radius: 15;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnshedualonaction" prefHeight="60.0" prefWidth="109.0" style="-fx-background-color: #1A1363;" text="Dashboard" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox layoutY="487.0" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnReportaction" prefHeight="31.0" prefWidth="89.0" style="-fx-background-color: #1A1363;" text="Report" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <ImageView fitHeight="188.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ui/Screenshot%202023-11-18%20220226.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="-1.0" layoutY="522.0" prefHeight="32.0" prefWidth="240.0" style="-fx-background-color: #1A1363;">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnSupplementsonaction" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #1A1363;" text="Supplements" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="162.0" fitWidth="321.0" layoutX="248.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ui/Screenshot%202023-11-18%20173912.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="264.0" layoutY="213.0" prefHeight="475.0" prefWidth="705.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12;">
+         <children>
+            <TextField fx:id="txtage" layoutX="384.0" layoutY="151.0" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtInstructorid" layoutX="31.0" layoutY="60.0" prefHeight="35.0" prefWidth="238.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtfirstname" layoutX="386.0" layoutY="60.0" prefHeight="35.0" prefWidth="291.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <DatePicker fx:id="txtbirth" layoutX="384.0" layoutY="338.0" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;" />
+            <Text fill="#1a1363" layoutX="33.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructor ID" wrappingWidth="115.99999999999989">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#1a1363" layoutX="389.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructor First Name" wrappingWidth="180.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#1a1363" layoutX="387.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" wrappingWidth="139.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtlastname" layoutX="31.0" layoutY="154.0" prefHeight="35.0" prefWidth="327.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtgender" layoutX="32.0" layoutY="250.0" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtEmail" layoutX="384.0" layoutY="250.0" prefHeight="35.0" prefWidth="268.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtcontactno" layoutX="29.0" layoutY="330.0" prefHeight="35.0" prefWidth="247.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <Text fill="#1a1363" layoutX="33.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructor Last Name" wrappingWidth="180.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#1a1363" layoutX="36.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" wrappingWidth="139.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#1a1363" layoutX="386.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="180.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#1a1363" layoutX="35.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact no" wrappingWidth="139.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#1a1363" layoutX="384.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" wrappingWidth="139.0">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Text>
+            <Button layoutX="576.0" layoutY="401.0" mnemonicParsing="false" onAction="#btnsaveonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Save">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="442.0" layoutY="401.0" mnemonicParsing="false" onAction="#btnviewonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="View">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="305.0" layoutY="401.0" mnemonicParsing="false" onAction="#btndeleteonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Delete">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
