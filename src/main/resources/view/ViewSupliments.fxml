@@ -21,10 +21,10 @@
             <Image url="@../ui/Screenshot%202023-11-18%20173912.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tblEquipment" layoutX="59.0" layoutY="214.0" prefHeight="463.0" prefWidth="620.0">
+      <TableView fx:id="tblSupliments" layoutX="59.0" layoutY="214.0" prefHeight="463.0" prefWidth="620.0">
          <columns>
-            <TableColumn fx:id="colEquipmentID" prefWidth="483.0" text="ProductName" />
-            <TableColumn fx:id="colEquipmentName" prefWidth="136.0" text="ProductQTY" />
+            <TableColumn fx:id="colproductname" prefWidth="483.0" text="ProductName" />
+            <TableColumn fx:id="colproductqty" prefWidth="136.0" text="ProductQTY" />
          </columns>
       </TableView>
       <Button layoutX="563.0" layoutY="719.0" mnemonicParsing="false" onAction="#btnbackaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15;" text="Back">

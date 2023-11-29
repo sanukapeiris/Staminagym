@@ -54,7 +54,7 @@ public class EquipmentModel {
 
     public static EquipmentDTO search(String equipmentModel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM equipment WHERE code = ?";
+        String sql = "SELECT * FROM equipment WHERE EquipmentID = ?";
 
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, equipmentModel);

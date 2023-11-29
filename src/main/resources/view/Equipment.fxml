@@ -72,6 +72,11 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
+            <Button layoutX="151.0" layoutY="245.0" mnemonicParsing="false" onAction="#btnPrintOnAction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Report">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <ImageView fitHeight="162.0" fitWidth="321.0" layoutX="244.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">

@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
@@ -30,7 +31,9 @@ public class Supliment {
     private AnchorPane root;
 
     @FXML
-    private JFXComboBox<?> cmbproductname;
+    private ComboBox<String> cmbproductname;
+
+
 
     @FXML
     private TextField txtproductqty;

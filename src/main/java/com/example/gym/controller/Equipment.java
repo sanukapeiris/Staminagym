@@ -11,10 +11,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class Equipment {
@@ -214,4 +220,38 @@ public class Equipment {
         }
         return true;
     }
+    @FXML
+    void btnPrintOnAction(ActionEvent event) throws JRException {
+        String id = txtEquipmentid.getText();
+
+        try {
+            EquipmentDTO dto = EquipmentModel.search(id);
+            if(dto!=null){
+                viewCustomerReport(dto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void viewCustomerReport(EquipmentDTO dto) throws JRException {
+        HashMap hashMap = new HashMap();
+        hashMap.put("id",dto.getEquipmentid());
+        hashMap.put("name",dto.getEquipmentname());
+        hashMap.put("type",dto.getEquipmenttype());
+        hashMap.put("date",dto.getPurchaseDate());
+
+
+        InputStream resourceAsStream =  getClass().getResourceAsStream("/Report/Equipment_Report_A4_2.jrxml");
+        JasperDesign load = JRXmlLoader.load(resourceAsStream);
+        JasperReport jasperReport= JasperCompileManager.compileReport(load);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                jasperReport,
+                hashMap,
+                new JREmptyDataSource()
+        );
+
+        JasperViewer.viewReport(jasperPrint,false);
+        }
 }

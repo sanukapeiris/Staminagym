@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2023-11-28T01:21:39 -->
+<!-- 2023-11-29T19:36:52 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Equipment_Report_A4_2" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d817051f-3370-4ad6-acc3-899a74c5989e">
 	<parameter name="id" class="java.lang.String"/>
 	<parameter name="name" class="java.lang.String"/>
@@ -15,7 +15,7 @@
 	<title>
 		<band height="104" splitType="Stretch">
 			<staticText>
-				<reportElement x="178" y="0" width="210" height="25" uuid="b19547e4-d7c6-4238-bcfd-51a39638413d">
+				<reportElement x="178" y="4" width="210" height="25" uuid="b19547e4-d7c6-4238-bcfd-51a39638413d">
 					<property name="local_mesure_unitheight" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -25,20 +25,20 @@
 				<text><![CDATA[Stamina]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="178" y="55" width="205" height="15" uuid="93681c88-7ac9-417f-a5a9-d366cc9aef86"/>
+				<reportElement x="178" y="59" width="205" height="15" uuid="93681c88-7ac9-417f-a5a9-d366cc9aef86"/>
 				<text><![CDATA[0785603209,Panadura,Private Bus Stand.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="178" y="25" width="205" height="15" uuid="30c69dff-9eef-418f-8767-d2abb0461536"/>
+				<reportElement x="178" y="29" width="205" height="15" uuid="30c69dff-9eef-418f-8767-d2abb0461536"/>
 				<text><![CDATA[Galle Road,Panadura.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="178" y="40" width="205" height="15" uuid="053d00f6-9f93-46cd-aa41-e20366e4cac2"/>
+				<reportElement x="178" y="44" width="205" height="15" uuid="053d00f6-9f93-46cd-aa41-e20366e4cac2"/>
 				<text><![CDATA[panadura,12500 ]]></text>
 			</staticText>
 			<image>
-				<reportElement x="-13" y="0" width="160" height="80" uuid="8ae2bea6-2040-4195-9612-6bd951cbd844"/>
-				<imageExpression><![CDATA["C:\Users\sanuk\IdeaProjects\gym\src\main\resources\ui\Screenshot 2023-11-18 170118.png"]]></imageExpression>
+				<reportElement x="15" y="12" width="139" height="69" uuid="0012ca7c-335c-47bc-9ef4-3d14e0a6b9c3"/>
+				<imageExpression><![CDATA["C:/Users/sanuk/Downloads/Screenshot 2023-11-18 170118.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -105,7 +105,7 @@
 	<pageFooter>
 		<band height="56" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="Float" mode="Opaque" x="-9" y="20" width="556" height="36" backcolor="#E6E8E9" uuid="0d8083b7-fb8d-4f76-996b-f219f94cbfe7"/>
+				<reportElement positionType="Float" mode="Opaque" x="20" y="9" width="510" height="36" backcolor="#E6E8E9" uuid="0d8083b7-fb8d-4f76-996b-f219f94cbfe7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Serif" size="9" isItalic="true"/>
 				</textElement>

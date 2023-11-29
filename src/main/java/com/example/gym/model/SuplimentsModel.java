@@ -3,10 +3,15 @@ package com.example.gym.model;
 import com.example.gym.db.DbConnection;
 import com.example.gym.dto.ReportDTO;
 import com.example.gym.dto.SuplimentsDTO;
+import com.example.gym.dto.tm.ReportTM;
+import com.example.gym.dto.tm.SuplimentsTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SuplimentsModel {
     public static boolean saveSupliments(SuplimentsDTO dto)  throws SQLException {
@@ -23,5 +28,24 @@ public class SuplimentsModel {
         boolean isSaved = pstm.executeUpdate() > 0;
 
         return isSaved;
+    }
+    public static List<SuplimentsTM> getAll() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql = "SELECT * FROM supplements";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<SuplimentsTM> dtoList = new ArrayList<>();
+
+        while(resultSet.next()) {
+            dtoList.add(
+                    new SuplimentsTM(
+                            resultSet.getString(1),
+                            resultSet.getString(2)
+                    )
+            );
+        }
+        return dtoList;
+
     }
 }

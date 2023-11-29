@@ -30,6 +30,7 @@ public class HealthReport  {
     @FXML
     private AnchorPane root;
 
+
     @FXML
     private TextField txtBodyFatpercentage;
 
