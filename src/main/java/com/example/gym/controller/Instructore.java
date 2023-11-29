@@ -1,7 +1,9 @@
 package com.example.gym.controller;
 
 import com.example.gym.dto.InstructoreDTO;
+import com.example.gym.dto.MembersDTO;
 import com.example.gym.model.InstructionModel;
+import com.example.gym.model.MembersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +13,16 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class Instructore {
 
@@ -220,6 +228,44 @@ public class Instructore {
         stage.setTitle("ViewInstructor");
         stage.centerOnScreen();
 
+    }
+    @FXML
+    void btnPrintOnAction(ActionEvent event) throws JRException {
+        String id = txtInstructorid.getText();
+
+        try {
+            InstructoreDTO dto = InstructionModel.search(id);
+            if(dto!=null){
+                viewCustomerReport(dto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void viewCustomerReport(InstructoreDTO dto) throws JRException {
+        HashMap hashMap = new HashMap();
+        hashMap.put("id",dto.getInstructorID());
+        hashMap.put("firstname",dto.getFistName());
+        hashMap.put("lastname",dto.getLastName());
+        hashMap.put("age",dto.getAge());
+        hashMap.put("gender",dto.getGender());
+        hashMap.put("Email",dto.getEmail());
+        hashMap.put("contactno",dto.getContactno());
+        hashMap.put("birth",dto.getBirth());
+
+
+        InputStream resourceAsStream =  getClass().getResourceAsStream("/Report/Instructore _A4_2.jrxml");
+        JasperDesign load = JRXmlLoader.load(resourceAsStream);
+        JasperReport jasperReport= JasperCompileManager.compileReport(load);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(
+                jasperReport,
+                hashMap,
+                new JREmptyDataSource()
+        );
+
+        JasperViewer.viewReport(jasperPrint,false);
     }
 
 }

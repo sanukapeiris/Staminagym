@@ -71,4 +71,30 @@ public class InstructionModel {
 
         return pstm.executeUpdate() > 0;
     }
+
+    public static InstructoreDTO search(String instructoremodel) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql = "SELECT * FROM instructor WHERE instructor = ?";
+
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, instructoremodel);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        InstructoreDTO dto = null;
+
+        if(resultSet.next()) {
+            dto = new InstructoreDTO(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getString(6),
+                    resultSet.getString(7),
+                    resultSet.getString(8)
+            );
+        }
+        return dto;
+    }
 }

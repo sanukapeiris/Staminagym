@@ -61,7 +61,7 @@ public class MembersModel{
 
     public static MembersDTO search(String membersModel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM members WHERE code = ?";
+        String sql = "SELECT * FROM members WHERE MemberID = ?";
 
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, membersModel);
