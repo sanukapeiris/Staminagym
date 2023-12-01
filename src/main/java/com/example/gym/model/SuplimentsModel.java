@@ -10,10 +10,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SuplimentsModel {
+    //private SuplimentsModel suplimentsModel =new SuplimentsModel();
+   // private InventoryModel inventoryModel = new InventoryModel();
     public static boolean saveSupliments(SuplimentsDTO dto)  throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
@@ -46,6 +49,20 @@ public class SuplimentsModel {
             );
         }
         return dtoList;
+
+    }
+
+
+    public boolean saveSupliments(String productName, String productprice) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "INSERT INTO supplements VALUES(?, ?)";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, productName);
+        pstm.setString(2, productprice);
+
+
+        return pstm.executeUpdate()>0;
 
     }
 }

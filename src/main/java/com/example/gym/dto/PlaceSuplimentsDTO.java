@@ -1,21 +1,21 @@
 package com.example.gym.dto;
 
-import java.util.List;
 import com.example.gym.dto.tm.CartTM;
 import lombok.*;
 
 import java.util.ArrayList;
-
+import java.util.List;
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString
-@NoArgsConstructor
 
-public class SuplimentsDTO {
+public class PlaceSuplimentsDTO {
     private String ProductName;
     private String ProductQTY;
+    private List <CartTM> cartTmList = new ArrayList<>();
+
 
 
 }
-

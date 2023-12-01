@@ -194,6 +194,8 @@ public class Equipment {
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member deleted!").show();
             } else {
+
+
                 new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
             }
         } catch (SQLException e) {

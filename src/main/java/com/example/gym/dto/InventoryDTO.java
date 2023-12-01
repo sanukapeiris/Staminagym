@@ -11,4 +11,8 @@ public class InventoryDTO {
     private String ProductName;
     private String ProductQTY;
     private String ProductPrice;
+
+    public String getCode() {
+        return ProductName;
+    }
 }
