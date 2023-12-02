@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -217,9 +218,10 @@ public class Supliment {
     @FXML
     void cmbproductnameOnAction(ActionEvent event) {
         String productname = (String) cmbproductname.getValue();
+        txtQty.requestFocus();
 
         try {
-            InventoryDTO inventoryDTO = inventoryModel.search(productname);
+            InventoryDTO inventoryDTO = InventoryModel.search(productname);
             lblproductprice.setText(inventoryDTO.getProductPrice());
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -244,6 +246,16 @@ public class Supliment {
 
     public void initialize() {
         loadMemberId();
+        setCellValueFactory();
+    }
+
+    private void setCellValueFactory() {
+        colproductname.setCellValueFactory(new PropertyValueFactory<>("Productname"));
+        colqty.setCellValueFactory(new PropertyValueFactory<>("ProductQTY"));
+        colproductprice.setCellValueFactory(new PropertyValueFactory<>("ProductPrice"));
+        coltotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+
     }
 
   /*  private void generateNextOrderId() {

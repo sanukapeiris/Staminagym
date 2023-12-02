@@ -11,6 +11,6 @@ import lombok.*;
 public class InventoryTM {
 
         private String ProductName;
-        private String ProductQTY;
+        private String ProductQty;
         private String ProductPrice;
 }

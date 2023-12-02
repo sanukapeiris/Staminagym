@@ -9,7 +9,7 @@ import lombok.*;
 
 public class InventoryDTO {
     private String ProductName;
-    private String ProductQTY;
+    private String ProductQty;
     private String ProductPrice;
 
     public String getCode() {

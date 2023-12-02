@@ -57,7 +57,7 @@ public class ViewInventory implements Initializable {
             for (InventoryTM dto : dtoList) {
                 obList.add(new InventoryTM(
                         dto.getProductName(),
-                        dto.getProductQTY(),
+                        dto.getProductQty(),
                         dto.getProductPrice()
                 ));
             }

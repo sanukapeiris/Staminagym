@@ -25,7 +25,7 @@ public class InventoryModel {
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, dto.getProductName());
-        pstm.setString(2, dto.getProductQTY());
+        pstm.setString(2, dto.getProductQty());
         pstm.setString(3, dto.getProductPrice());
         boolean isSaved = pstm.executeUpdate() > 0;
 
@@ -53,7 +53,7 @@ public class InventoryModel {
     }
     public static InventoryDTO search(String membersModel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM inventory WHERE code = ?";
+        String sql = "SELECT * FROM inventory WHERE ProductName = ?";
 
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, membersModel);
