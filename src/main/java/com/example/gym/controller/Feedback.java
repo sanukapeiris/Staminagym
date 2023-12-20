@@ -1,7 +1,9 @@
 package com.example.gym.controller;
 
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.FeedbackDTO;
 import com.example.gym.dto.MembersDTO;
+import com.example.gym.model.EquipmentModel;
 import com.example.gym.model.FeedbackModel;
 import com.example.gym.model.MembersModel;
 import javafx.event.ActionEvent;
@@ -35,6 +37,8 @@ public class Feedback {
 
     @FXML
     private TextField txtfeedback;
+
+    private FeedbackModel cusModel = new FeedbackModel();
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {

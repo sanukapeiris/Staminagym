@@ -202,13 +202,13 @@ public class ViewInstructor implements Initializable {
 
     private void setCellValueFactory() {
 
-        colInstructorID.setCellValueFactory(new PropertyValueFactory<>("MemberID"));
+        colInstructorID.setCellValueFactory(new PropertyValueFactory<>("InstructorID"));
         colInstructorfistname.setCellValueFactory(new PropertyValueFactory<>("FistName"));
         colInstructorlastname.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         colage.setCellValueFactory(new PropertyValueFactory<>("Age"));
         colgender.setCellValueFactory(new PropertyValueFactory<>("Gender"));
         colemail.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        colcontactno.setCellValueFactory(new PropertyValueFactory<>(" ContactNo"));
+        colcontactno.setCellValueFactory(new PropertyValueFactory<>("ContactNo"));
         colbirthdate.setCellValueFactory(new PropertyValueFactory<>("Birth"));
     }
 

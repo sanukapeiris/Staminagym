@@ -1,7 +1,9 @@
 package com.example.gym.controller;
 
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.MembersDTO;
+import com.example.gym.model.HealthReportModel;
 import com.example.gym.model.InstructionModel;
 import com.example.gym.model.MembersModel;
 import javafx.event.ActionEvent;
@@ -51,6 +53,8 @@ public class Instructore {
     private TextField txtlastname;
     @FXML
     private TextField txtEmail;
+    private InstructionModel InstructoreModel = new InstructionModel();
+
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -266,6 +270,29 @@ public class Instructore {
         );
 
         JasperViewer.viewReport(jasperPrint,false);
+    }
+    @FXML
+    void btnupdateonaction(ActionEvent event) {
+        String id = txtInstructorid.getText();
+        String firstname = txtfirstname.getText();
+        String lastname = txtlastname.getText();
+        String age = txtage.getText();
+        String gender = txtgender.getText();
+        String email = txtEmail.getText();
+        String contact = txtcontactno.getText();
+        String purchasedate = String.valueOf(txtbirth.getValue());
+
+        var dto = new InstructoreDTO(id, firstname, lastname, age,gender,email,contact,purchasedate);
+
+        try {
+            boolean isUpdated = InstructionModel.updateInstructore(dto);
+            if(isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
+                clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
 }

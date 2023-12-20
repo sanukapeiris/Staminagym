@@ -30,7 +30,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <DatePicker fx:id="txtbirth" layoutX="391.0" layoutY="336.0" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;" />
+            <DatePicker fx:id="txtbirth" layoutX="389.0" layoutY="336.0" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;" />
             <Text fill="#1a1363" layoutX="33.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Members ID" wrappingWidth="115.99999999999989">
                <font>
                   <Font name="System Bold" size="17.0" />
@@ -91,22 +91,27 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Text>
-            <Button layoutX="571.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnsaveonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Save">
+            <Button layoutX="582.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnsaveonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Save">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="437.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnviewonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="View">
+            <Button layoutX="448.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnviewonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="View">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="300.0" layoutY="410.0" mnemonicParsing="false" onAction="#btndeleteonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Delete">
+            <Button layoutX="311.0" layoutY="420.0" mnemonicParsing="false" onAction="#btndeleteonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Delete">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Button>
-            <Button layoutX="160.0" layoutY="410.0" mnemonicParsing="false" onAction="#btnPrintOnAction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Report">
+            <Button layoutX="171.0" layoutY="420.0" mnemonicParsing="false" onAction="#btnPrintOnAction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Report">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="582.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnupdateonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Update">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

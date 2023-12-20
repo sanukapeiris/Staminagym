@@ -1,6 +1,8 @@
 package com.example.gym.controller;
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.dto.tm.MemberTM;
+import com.example.gym.model.InstructionModel;
 import com.example.gym.model.MembersModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +36,9 @@ public class Payment {
 
     @FXML
     private TextField txtpaymenttype;
+
+    private PaymentModel paymentModel = new PaymentModel();
+
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Members.fxml"));
@@ -221,6 +226,24 @@ public class Payment {
             cmbmemberid.setItems(obList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    void btnupdateonaction(ActionEvent event) {
+        String id = cmbmemberid.getValue();
+        String name = txtpaymenttype.getText();
+        String account = txtaccountno.getText();
+
+        var dto = new PaymentDTO(id, name, account);
+
+        try {
+            boolean isUpdated = paymentModel.updatepayment(dto);
+            if(isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
+                clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 

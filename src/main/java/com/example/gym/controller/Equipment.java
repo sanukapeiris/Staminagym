@@ -39,7 +39,7 @@ public class Equipment {
 
     @FXML
     private DatePicker txtpurchasedate;
-    private EquipmentModel cusModel;
+    private EquipmentModel cusModel = new EquipmentModel();
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -160,7 +160,6 @@ public class Equipment {
             String id = txtEquipmentid.getText();
             String name = txtEquipmentname.getText();
             String type = txtEquipmenttype.getText();
-            ;
             String date = String.valueOf(txtpurchasedate.getValue());
 
             var dto = new EquipmentDTO(id, name, type, date);
@@ -256,4 +255,23 @@ public class Equipment {
 
         JasperViewer.viewReport(jasperPrint,false);
         }
+    @FXML
+    void btnupdateonaction(ActionEvent event) {
+        String id = txtEquipmentid.getText();
+        String name = txtEquipmentname.getText();
+        String type = txtEquipmenttype.getText();
+        String purchasedate = String.valueOf(txtpurchasedate.getValue());
+
+        var dto = new EquipmentDTO(id, name, type, purchasedate);
+        
+        try {
+            boolean isUpdated = cusModel.updateCustomer(dto);
+            if(isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
+                clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
+    }
 }

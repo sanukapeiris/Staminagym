@@ -1,6 +1,7 @@
 package com.example.gym.model;
 
 import com.example.gym.db.DbConnection;
+import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.dto.tm.MemberTM;
 
@@ -91,6 +92,23 @@ public class MembersModel{
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, memberID);
+
+        return pstm.executeUpdate() > 0;
+    }
+    public static boolean updatemember(MembersDTO dto) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE Member SET EquipmentName = ?, EquipmentQty = ?, PurchaseDate = ? WHERE EquipmentID = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, dto.getMemberID());
+        pstm.setString(2, dto.getFistName());
+        pstm.setString(3, dto.getLastName());
+        pstm.setString(4, dto.getGender());
+        pstm.setString(4, dto.getEmail());
+        pstm.setString(4, dto.getContactNo());
+        pstm.setString(4, dto.getBirth());
+
+
 
         return pstm.executeUpdate() > 0;
     }

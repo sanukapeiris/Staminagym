@@ -1,6 +1,7 @@
 package com.example.gym.model;
 
 import com.example.gym.db.DbConnection;
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.dto.tm.InstructoreTM;
@@ -74,7 +75,7 @@ public class InstructionModel {
 
     public static InstructoreDTO search(String instructoremodel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
-        String sql = "SELECT * FROM instructor WHERE instructor = ?";
+        String sql = "SELECT * FROM instructor WHERE InstructorID = ?";
 
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1, instructoremodel);
@@ -96,5 +97,22 @@ public class InstructionModel {
             );
         }
         return dto;
+    }
+    public static boolean updateInstructore(InstructoreDTO dto) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE instructor SET EquipmentName = ?, EquipmentQty = ?, PurchaseDate = ? WHERE EquipmentID = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, dto.getInstructorID());
+        pstm.setString(2, dto.getFistName());
+        pstm.setString(3, dto.getLastName());
+        pstm.setString(4, dto.getGender());
+        pstm.setString(4, dto.getEmail());
+        pstm.setString(4, dto.getContactno());
+        pstm.setString(4, dto.getBirth());
+
+
+
+        return pstm.executeUpdate() > 0;
     }
 }

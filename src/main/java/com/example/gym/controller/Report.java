@@ -186,5 +186,6 @@ public class Report {
 
     public void btndeleteonaction(ActionEvent actionEvent) {
     }
+
 }
 

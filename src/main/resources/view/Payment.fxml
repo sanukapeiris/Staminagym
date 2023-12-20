@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="810.0" prefWidth="1133.0" style="-fx-background-color: #ECE9E9;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gym.controller.Payment">
+<AnchorPane fx:id="root" prefHeight="810.0" prefWidth="1133.0" style="-fx-background-color: #ECE9E9;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gym.controller.Payment">
     <children>
       <AnchorPane prefHeight="810.0" prefWidth="241.0" style="-fx-background-color: #1A1363;">
          <children>
@@ -154,6 +158,11 @@
                </font>
             </Button>
             <JFXComboBox fx:id="cmbmemberid" layoutX="33.0" layoutY="65.0" onAction="#cmbmemberidonaction" prefHeight="25.0" prefWidth="238.0" />
+            <Button layoutX="152.0" layoutY="275.0" mnemonicParsing="false" onAction="#btnupdateonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Update">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <ImageView fitHeight="79.0" fitWidth="340.0" layoutX="265.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">

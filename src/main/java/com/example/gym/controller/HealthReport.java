@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -29,6 +28,7 @@ public class HealthReport  {
     //public JFXComboBox txtmemberid;
     @FXML
     private AnchorPane root;
+    private HealthReportModel HelthModel = new HealthReportModel();
 
 
     @FXML
@@ -214,6 +214,20 @@ public class HealthReport  {
 
 
     public void btndeleteonaction(ActionEvent actionEvent) {
+        String HealthreportID = txthealthreportid.getText();
+
+        try {
+            boolean isDeleted = HealthReportModel.deleteEquipment(HealthreportID);
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Health Report deleted!").show();
+            } else {
+
+
+                new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     public void cmbmemberidonaction(ActionEvent actionEvent) {
@@ -236,6 +250,28 @@ public class HealthReport  {
             cmdmemberid.setItems(obList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    void btnupdateonaction(ActionEvent event) {
+        String Memberid = txthealthreportid.getText();
+        String HRid = txthealthreportid.getText();
+        String weigh = txtweight.getText();
+        String height = txtheight.getText();
+        String medical = txtmedical.getText();
+        String fat = txtBodyFatpercentage.getText();
+
+
+        var dto = new HealthReportDTO (Memberid,HRid, weigh, height, medical,fat);
+
+        try {
+            boolean isUpdated = HelthModel.updateHealth(dto);
+            if(isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
+                clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 

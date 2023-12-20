@@ -77,5 +77,4 @@ public class Inventory {
             stage.setTitle("Equipment Page");
             stage.centerOnScreen();
     }
-
 }

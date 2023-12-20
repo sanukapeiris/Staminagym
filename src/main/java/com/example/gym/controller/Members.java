@@ -1,8 +1,10 @@
 package com.example.gym.controller;
 
 import com.example.gym.dto.EquipmentDTO;
+import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.model.EquipmentModel;
+import com.example.gym.model.InstructionModel;
 import com.example.gym.model.MembersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -279,6 +281,29 @@ public class Members {
         );
 
         JasperViewer.viewReport(jasperPrint,false);
+    }
+    @FXML
+    void btnupdateonaction(ActionEvent event) {
+        String id = txtmemberid.getText();
+        String firstname = txtfirstname.getText();
+        String lastname = txtlastname.getText();
+        String age = txtage.getText();
+        String gender = txtgender.getText();
+        String email = txtemail.getText();
+        String contact = txtcontactno.getText();
+        String purchasedate = String.valueOf(txtbirth.getValue());
+
+        var dto = new MembersDTO(id, firstname, lastname, age,gender,email,contact,purchasedate);
+
+        try {
+            boolean isUpdated = MembersModel.updatemember(dto);
+            if(isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
+                clearFields();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
 

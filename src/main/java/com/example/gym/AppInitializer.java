@@ -16,7 +16,6 @@ public class AppInitializer extends Application {
         stage.setScene(new Scene(FXMLLoader.load(this.getClass().getResource("/view/login.fxml"))));
         stage.centerOnScreen();
         stage.setTitle("Dashboard");
-
         stage.show();
     }
 }

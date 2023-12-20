@@ -2,6 +2,7 @@ package com.example.gym.model;
 
 import com.example.gym.db.DbConnection;
 import com.example.gym.dto.HealthReportDTO;
+import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.dto.PaymentDTO;
 import com.example.gym.dto.tm.PaymentTM;
@@ -56,6 +57,18 @@ public class PaymentModel {
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         pstm.setString(1, memberID);
+
+        return pstm.executeUpdate() > 0;
+    }
+    public boolean updatepayment(PaymentDTO dto) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE payment SET PaymentType = ?, AccountNo = ? WHERE MemberID = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1, dto.getMemberID());
+        pstm.setString(2, dto.getPaymenttype());
+        pstm.setString(3, dto.getPaymenttype());
+
 
         return pstm.executeUpdate() > 0;
     }
