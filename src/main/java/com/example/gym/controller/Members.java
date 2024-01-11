@@ -1,11 +1,10 @@
 package com.example.gym.controller;
 
 import com.example.gym.dto.EquipmentDTO;
-import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.MembersDTO;
-import com.example.gym.model.EquipmentModel;
-import com.example.gym.model.InstructionModel;
 import com.example.gym.model.MembersModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,6 +54,8 @@ public class Members {
 
     @FXML
     private TextField txtmemberid;
+
+    ObservableList<MembersDTO> observableList = FXCollections.observableArrayList();
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -167,33 +168,50 @@ public class Members {
         stage.centerOnScreen();
     }
 
-    @FXML
-    void btnsaveonaction(ActionEvent event) {
-        boolean isValidated = validateItem();
-        if(isValidated) {
-            String memberid = txtmemberid.getText();
-            String firstname = txtfirstname.getText();
-            String lastname = txtlastname.getText();
-            String age = txtage.getText();
-            String gender = txtgender.getText();
-            String birth = String.valueOf(txtbirth.getValue());
-            String Email = txtemail.getText();
-            String contactno = txtcontactno.getText();
+    /*@FXML
+    void btndeleteonaction(ActionEvent event)  {
+        String memberID = txtmemberid.getText();
 
-
-            var dto = new MembersDTO(memberid, firstname, lastname, age, gender, birth, Email, contactno);
-            try {
-                boolean isSaved = MembersModel.saveMembers(dto);
-
-                if (isSaved) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
-                    clearFields();
-                }
-            } catch (SQLException e) {
-                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        try {
+            boolean isDeleted = MembersModel.deleteMembers(memberID);
+            if (isDeleted) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Member deleted!").show();
+            } else {
+                new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
             }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
+
+     */
+   @FXML
+   void btnsaveonaction(ActionEvent event) {
+       boolean isValidated = validateItem();
+       if(isValidated) {
+           String memberid = txtmemberid.getText();
+           String firstname = txtfirstname.getText();
+           String lastname = txtlastname.getText();
+           Integer age = Integer.valueOf(txtage.getText());
+           String gender = txtgender.getText();
+           LocalDate birth = LocalDate.parse(String.valueOf(txtbirth.getValue()));
+           String Email = txtemail.getText();
+           String contactno = txtcontactno.getText();
+
+
+           var dto = new MembersDTO(memberid, firstname, lastname, age, gender, birth, Email, contactno);
+           try {
+               boolean isSaved = MembersModel.saveMembers(dto);
+
+               if (isSaved) {
+                   new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
+                   clearFields();
+               }
+           } catch (SQLException e) {
+               new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+           }
+       }
+   }
 
 
 
@@ -224,7 +242,6 @@ public class Members {
         }
     }
 
-
     public void btnviewonaction(ActionEvent actionEvent) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/ViewMember.fxml"));
         Scene scene = new Scene(anchorPane);
@@ -236,7 +253,7 @@ public class Members {
     }
     private boolean validateItem() {
         String itemId = txtmemberid.getText();
-        boolean matches = Pattern.matches("[C][0-9]{3,}",itemId);
+        boolean matches = Pattern.matches("[M][0-9]{3,}",itemId);
 
         if(!matches){
             new Alert(Alert.AlertType.ERROR, "Invalid item id.").show();
@@ -282,29 +299,134 @@ public class Members {
 
         JasperViewer.viewReport(jasperPrint,false);
     }
+    /*@FXML
+    void btnupdateonaction(ActionEvent event) {
+        String id = txtmemberid.getText();
+        String firstname = txtfirstname.getText();
+        String lastname = txtlastname.getText();
+        Integer age = Integer.valueOf(txtage.getText());
+        String gender = txtgender.getText();
+        LocalDate birthdate = LocalDate.parse(String.valueOf(txtbirth.getValue()));
+        String email = txtemail.getText();
+        String contact = txtcontactno.getText();
+
+
+        boolean isUpdated = false;
+        try {
+            isUpdated = MembersModel.updatemember(new MembersDTO(id, firstname, lastname, age,gender ,birthdate,email,contact));
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
+                txtmemberid.setText("");
+                txtfirstname.setText("");
+                txtlastname.setText("");
+                txtage.setText("");
+                txtgender.setText("");
+                txtbirth.setValue(LocalDate.parse(""));
+                txtemail.setText("");
+                txtcontactno.setText("");
+                observableList.clear();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Update failed").show();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+     */
+
+    @FXML
+    void txtCustomerIdSearchOnAction(ActionEvent event) {
+        String memberid = txtmemberid.getText();
+
+        try {
+            MembersDTO membersDTO= MembersModel.search(memberid);
+
+            if (membersDTO != null) {
+                txtmemberid.setText(membersDTO.getMemberID());
+                txtfirstname.setText(membersDTO.getFistName());
+                txtlastname.setText(membersDTO.getLastName());
+                txtage.setText(String.valueOf(membersDTO.getAge()));
+                txtgender.setText(membersDTO.getGender());
+                txtemail.setText(membersDTO.getEmail());
+                txtcontactno.setText(membersDTO.getContactNo());
+                txtbirth.setValue(membersDTO.getBirth());
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+       /* @FXML
+    void btnsaveonaction(ActionEvent event) {
+        boolean isValidated = validateItem();
+        if(isValidated) {
+            String memberid = txtmemberid.getText();
+            String firstname = txtfirstname.getText();
+            String lastname = txtlastname.getText();
+            Integer age = Integer.valueOf(txtage.getText());
+            String gender = txtgender.getText();
+            LocalDate birth = LocalDate.parse(String.valueOf(txtbirth.getValue()));
+            String Email = txtemail.getText();
+            String contactno = txtcontactno.getText();
+
+
+            var dto = new MembersDTO(memberid, firstname, lastname, age, gender, birth, Email, contactno);
+            try {
+                boolean isSaved = MembersModel.saveMembers(dto);
+
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
+                    clearFields();
+                }
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            }
+        }
+    }
+
+    */
+
+
+
+
     @FXML
     void btnupdateonaction(ActionEvent event) {
         String id = txtmemberid.getText();
         String firstname = txtfirstname.getText();
         String lastname = txtlastname.getText();
-        String age = txtage.getText();
+        Integer age = Integer.valueOf(txtage.getText());
         String gender = txtgender.getText();
+        LocalDate birthdate = LocalDate.parse(String.valueOf(txtbirth.getValue()));
         String email = txtemail.getText();
         String contact = txtcontactno.getText();
-        String purchasedate = String.valueOf(txtbirth.getValue());
 
-        var dto = new MembersDTO(id, firstname, lastname, age,gender,email,contact,purchasedate);
 
+        boolean isUpdated = false;
         try {
-            boolean isUpdated = MembersModel.updatemember(dto);
-            if(isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
-                clearFields();
+            isUpdated = MembersModel.updatemember(new MembersDTO(id, firstname, lastname, age,gender ,birthdate,email,contact));
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
+                txtmemberid.setText("");
+                txtfirstname.setText("");
+                txtlastname.setText("");
+                txtage.setText("");
+                txtgender.setText("");
+                txtbirth.setValue(LocalDate.parse(""));
+                txtemail.setText("");
+                txtcontactno.setText("");
+                observableList.clear();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Update failed").show();
             }
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            e.printStackTrace();
         }
     }
 
+    }
 
-}

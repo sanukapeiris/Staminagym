@@ -1,9 +1,7 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.MembersDTO;
-import com.example.gym.dto.tm.MemberTM;
-import com.example.gym.model.EquipmentModel;
+import com.example.gym.view.tdm.MemberTM;
 import com.example.gym.model.MembersModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,16 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 

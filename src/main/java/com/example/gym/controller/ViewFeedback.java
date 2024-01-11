@@ -1,8 +1,6 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.FeedbackDTO;
-import com.example.gym.dto.tm.EquipmentTM;
-import com.example.gym.dto.tm.FeedbackTM;
+import com.example.gym.view.tdm.FeedbackTM;
 import com.example.gym.model.FeedbackModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

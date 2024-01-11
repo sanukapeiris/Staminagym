@@ -1,8 +1,7 @@
 package com.example.gym.model;
-import com.example.gym.controller.Equipment;
+import com.example.gym.dao.SQLUtil;
 import com.example.gym.db.DbConnection;
 import com.example.gym.dto.EquipmentDTO;
-import com.example.gym.dto.MembersDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,19 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentModel {
-    public static boolean saveEquipment(EquipmentDTO dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "INSERT INTO equipment VALUES(?, ?, ?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, dto.getEquipmentid());
-        pstm.setString(2, dto.getEquipmentname());
-        pstm.setString(3, dto.getEquipmenttype());
-        pstm.setString(4, dto.getPurchaseDate());
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
+    public static boolean saveEquipment(EquipmentDTO equipmentDTO) throws SQLException {
+        String sql = "INSERT INTO Equipment(EquipmentID,EquipmentName,EquipmentQty,PurchaseDate) VALUES(?,?,?,?)";
+        boolean isSaved = SQLUtil.execute(sql, equipmentDTO.getEquipmentid(),equipmentDTO.getEquipmentname(),equipmentDTO.getEquipmenttype(),equipmentDTO.getPurchaseDate());
         return isSaved;
     }
 
@@ -73,30 +62,15 @@ public class EquipmentModel {
         }
         return dto;
     }
-
-    public static boolean deleteEquipment(String memberID)  throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "DELETE FROM equipment WHERE EquipmentID  = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, memberID);
-
-        return pstm.executeUpdate() > 0;
-
+    public static boolean deleteEquipment(String memberID) throws SQLException {
+        String sql = "DELETE FROM customer WHERE EquipmentID = ?";
+        return SQLUtil.execute(sql,memberID);
     }
 
-    public boolean updateCustomer(EquipmentDTO dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
+    public static boolean updateEquipment(EquipmentDTO equipmentDTO) throws SQLException {
+        String sql = "UPDATE equipment set EquipmentName=?,EquipmentQty=?,PurchaseDate=? WHERE EquipmentID = ?";
+        return SQLUtil.execute(sql,equipmentDTO.getEquipmentname(),equipmentDTO.getEquipmenttype(),equipmentDTO.getPurchaseDate(),equipmentDTO.getEquipmentid());
 
-        String sql = "UPDATE equipment SET EquipmentName = ?, EquipmentQty = ?, PurchaseDate = ? WHERE EquipmentID = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, dto.getEquipmentid());
-        pstm.setString(2, dto.getEquipmentname());
-        pstm.setString(3, dto.getEquipmenttype());
-        pstm.setString(4, dto.getPurchaseDate());
-
-        return pstm.executeUpdate() > 0;
     }
 
 }

@@ -1,8 +1,6 @@
 package com.example.gym.controller;
 import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.MembersDTO;
-import com.example.gym.dto.tm.MemberTM;
-import com.example.gym.model.InstructionModel;
 import com.example.gym.model.MembersModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -205,6 +203,42 @@ public class Payment {
             stage.centerOnScreen();
 
     }
+        /*@FXML
+    void btnupdateonaction(ActionEvent event) {
+        String id = txtmemberid.getText();
+        String firstname = txtfirstname.getText();
+        String lastname = txtlastname.getText();
+        Integer age = Integer.valueOf(txtage.getText());
+        String gender = txtgender.getText();
+        LocalDate birthdate = LocalDate.parse(String.valueOf(txtbirth.getValue()));
+        String email = txtemail.getText();
+        String contact = txtcontactno.getText();
+
+
+        boolean isUpdated = false;
+        try {
+            isUpdated = MembersModel.updatemember(new MembersDTO(id, firstname, lastname, age,gender ,birthdate,email,contact));
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
+                txtmemberid.setText("");
+                txtfirstname.setText("");
+                txtlastname.setText("");
+                txtage.setText("");
+                txtgender.setText("");
+                txtbirth.setValue(LocalDate.parse(""));
+                txtemail.setText("");
+                txtcontactno.setText("");
+                observableList.clear();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Update failed").show();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+     */
 
     public void cmbmemberidonaction(ActionEvent actionEvent) {
         String Memberid = cmbmemberid.getValue();

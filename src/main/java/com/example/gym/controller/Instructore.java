@@ -2,10 +2,9 @@ package com.example.gym.controller;
 
 import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.InstructoreDTO;
-import com.example.gym.dto.MembersDTO;
-import com.example.gym.model.HealthReportModel;
 import com.example.gym.model.InstructionModel;
-import com.example.gym.model.MembersModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,6 +54,7 @@ public class Instructore {
     private TextField txtEmail;
     private InstructionModel InstructoreModel = new InstructionModel();
 
+    ObservableList<InstructoreDTO> observableList = FXCollections.observableArrayList();
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -172,9 +172,9 @@ public class Instructore {
         String Instructorid = txtInstructorid.getText();
         String firstname = txtfirstname.getText();
         String lastname = txtlastname.getText();
-        String age = txtage.getText();
+        Integer age = Integer.valueOf(txtage.getText());
         String gender = txtgender.getText();
-        String birth = String.valueOf(txtbirth.getValue());
+        LocalDate birth = LocalDate.parse(String.valueOf(txtbirth.getValue()));
         String Email = txtEmail.getText();
         String contactno = txtcontactno.getText();
 
@@ -276,23 +276,93 @@ public class Instructore {
         String id = txtInstructorid.getText();
         String firstname = txtfirstname.getText();
         String lastname = txtlastname.getText();
-        String age = txtage.getText();
+        Integer age =  Integer.valueOf(txtage.getText());
         String gender = txtgender.getText();
+        LocalDate birth = LocalDate.parse(String.valueOf(txtbirth.getValue()));
         String email = txtEmail.getText();
         String contact = txtcontactno.getText();
-        String purchasedate = String.valueOf(txtbirth.getValue());
 
-        var dto = new InstructoreDTO(id, firstname, lastname, age,gender,email,contact,purchasedate);
-
+        boolean isUpdated = false;
         try {
-            boolean isUpdated = InstructionModel.updateInstructore(dto);
-            if(isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
-                clearFields();
+            isUpdated = InstructionModel.updateInstructore(new InstructoreDTO(id, firstname, lastname, age,gender ,birth,email,contact));
+            if (isUpdated) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
+                txtInstructorid.setText("");
+                txtfirstname.setText("");
+                txtlastname.setText("");
+                txtage.setText("");
+                txtgender.setText("");
+                txtbirth.setValue(LocalDate.parse(""));
+                txtEmail.setText("");
+                txtcontactno.setText("");
+                observableList.clear();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Update failed").show();
             }
         } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            e.printStackTrace();
         }
     }
+    /*@FXML
+void btnupdateonaction(ActionEvent event) {
+    String id = txtmemberid.getText();
+    String firstname = txtfirstname.getText();
+    String lastname = txtlastname.getText();
+    Integer age = Integer.valueOf(txtage.getText());
+    String gender = txtgender.getText();
+    LocalDate birthdate = LocalDate.parse(String.valueOf(txtbirth.getValue()));
+    String email = txtemail.getText();
+    String contact = txtcontactno.getText();
 
+
+    boolean isUpdated = false;
+    try {
+        isUpdated = MembersModel.updatemember(new MembersDTO(id, firstname, lastname, age,gender ,birthdate,email,contact));
+        if (isUpdated) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
+            txtmemberid.setText("");
+            txtfirstname.setText("");
+            txtlastname.setText("");
+            txtage.setText("");
+            txtgender.setText("");
+            txtbirth.setValue(LocalDate.parse(""));
+            txtemail.setText("");
+            txtcontactno.setText("");
+            observableList.clear();
+
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Update failed").show();
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+ */
+    @FXML
+    public void txtInstructorIdSearchOnAction(ActionEvent actionEvent) {
+        String Instructorid = txtInstructorid.getText();
+
+        try {
+            InstructoreDTO instructoreDTO= InstructionModel.search(Instructorid);
+
+            if (instructoreDTO != null) {
+                txtInstructorid.setText(instructoreDTO.getInstructorID());
+                txtfirstname.setText(instructoreDTO.getFistName());
+                txtlastname.setText(instructoreDTO.getLastName());
+                txtage.setText(String.valueOf(instructoreDTO.getAge()));
+                txtgender.setText(instructoreDTO.getGender());
+                txtEmail.setText(instructoreDTO.getEmail());
+                txtcontactno.setText(instructoreDTO.getContactno());
+                txtbirth.setValue(instructoreDTO.getBirth());
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        }
+    }
 }

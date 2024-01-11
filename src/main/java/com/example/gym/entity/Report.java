@@ -1,13 +1,15 @@
-package com.example.gym.dto.tm;
-
+package com.example.gym.entity;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-public class ReportTM {
+
+public class Report {
     private String FromDate;
     private String ToDate;
     private String Income;

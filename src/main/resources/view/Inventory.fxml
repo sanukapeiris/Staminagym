@@ -13,7 +13,7 @@
    <children>
       <AnchorPane layoutX="68.0" layoutY="218.0" prefHeight="347.0" prefWidth="705.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 12;">
          <children>
-            <TextField fx:id="txtProductName" layoutX="31.0" layoutY="60.0" prefHeight="35.0" prefWidth="238.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
+            <TextField fx:id="txtProductName" layoutX="31.0" layoutY="60.0" onAction="#txtProductNameSearchOnAction" prefHeight="35.0" prefWidth="238.0" style="-fx-background-color: #ECE9E9; -fx-background-radius: 12;">
                <font>
                   <Font size="16.0" />
                </font>
@@ -59,6 +59,11 @@
                </font>
             </Button>
             <Button layoutX="163.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnbackonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15;" text="Back">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="568.0" layoutY="210.0" mnemonicParsing="false" onAction="#btnupdateonaction" prefHeight="51.0" prefWidth="116.0" style="-fx-background-radius: 15; -fx-background-color: #ECE9E9;" text="Update">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>

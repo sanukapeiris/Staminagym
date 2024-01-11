@@ -1,17 +1,15 @@
 package com.example.gym.controller;
 
 import com.example.gym.dto.*;
-import com.example.gym.dto.tm.CartTM;
-import com.example.gym.dto.tm.InventoryTM;
+import com.example.gym.view.tdm.CartTM;
+import com.example.gym.view.tdm.InventoryTM;
 import com.example.gym.model.*;
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,7 +18,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

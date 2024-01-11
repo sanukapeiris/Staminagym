@@ -1,7 +1,7 @@
 package com.example.gym.controller;
 
 
-import com.example.gym.dto.tm.SuplimentsTM;
+import com.example.gym.view.tdm.SuplimentsTM;
 import com.example.gym.model.SuplimentsModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

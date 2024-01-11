@@ -1,32 +1,20 @@
 package com.example.gym.model;
 
+import com.example.gym.dao.SQLUtil;
 import com.example.gym.db.DbConnection;
-import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.FeedbackDTO;
-import com.example.gym.dto.tm.FeedbackTM;
-import com.example.gym.dto.tm.PaymentTM;
+import com.example.gym.view.tdm.FeedbackTM;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FeedbackModel {
-    public static boolean saveFeedback(FeedbackDTO dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "INSERT INTO feedback VALUES(?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setDate(1, Date.valueOf(dto.getDate()));
-        pstm.setString(2, dto.getFeedback());
-
-
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
+    public static boolean saveFeedback(FeedbackDTO feedbackDTO) throws SQLException {
+        String sql = "INSERT INTO Feedback(FeedbackDate,FeedbackText) VALUES(?,?)";
+        boolean isSaved = SQLUtil.execute(sql, feedbackDTO.getFeedback(),feedbackDTO.getDate());
         return isSaved;
     }
-
 
     public static List<FeedbackTM> getAll()  throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();

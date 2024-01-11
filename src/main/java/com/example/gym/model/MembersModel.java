@@ -1,9 +1,8 @@
 package com.example.gym.model;
 
+import com.example.gym.dao.SQLUtil;
 import com.example.gym.db.DbConnection;
-import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.MembersDTO;
-import com.example.gym.dto.tm.MemberTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,24 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MembersModel{
-    public static boolean saveMembers(MembersDTO dto)  throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "INSERT INTO members VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, dto.getMemberID());
-        pstm.setString(2, dto.getFistName());
-        pstm.setString(3, dto.getLastName());
-        pstm.setString(4, dto.getAge());
-        pstm.setString(5, dto.getGender());
-        pstm.setString(6, dto.getBirth());
-        pstm.setString(7, dto.getEmail());
-        pstm.setString(8, dto.getContactNo());
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
+    public static boolean saveMembers(MembersDTO membersDTO) throws SQLException {
+        String sql = "INSERT INTO members(MemberID,FirstName,LastName,Age,Gender,BirthDate,Email,ContactNo) VALUES(?,?,?,?,?,?,?,?)";
+        boolean isSaved = SQLUtil.execute(sql, membersDTO.getMemberID(),membersDTO.getFistName(),membersDTO.getLastName(),membersDTO.getAge(),membersDTO.getGender(),membersDTO.getBirth(),membersDTO.getEmail(),membersDTO.getContactNo());
         return isSaved;
+    }
+    public static boolean deleteMembers(String itemId) throws SQLException {
+        String sql = "DELETE FROM members WHERE MemberID = ?";
+        return SQLUtil.execute(sql,itemId);
     }
 
     public static List<MembersDTO> getAll() throws SQLException {
@@ -48,9 +37,9 @@ public class MembersModel{
                             resultSet.getString(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
-                            resultSet.getString(4),
+                            resultSet.getInt(4),
                             resultSet.getString(5),
-                            resultSet.getString(6),
+                            resultSet.getDate(6).toLocalDate(),
                             resultSet.getString(7),
                             resultSet.getString(8)
                     )
@@ -76,41 +65,19 @@ public class MembersModel{
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getString(4),
+                    resultSet.getInt(4),
                     resultSet.getString(5),
-                    resultSet.getString(6),
+                    resultSet.getDate(6).toLocalDate(),
                     resultSet.getString(7),
                     resultSet.getString(8)
             );
         }
         return dto;
     }
-    public static boolean deleteMembers(String memberID) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "DELETE FROM members WHERE MemberID = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
+    public static boolean updatemember(MembersDTO membersDTO) throws SQLException {
+        String sql = "UPDATE members set FirstName=?,LastName=?,Age=?,Gender=?,BirthDate=?,Email=?,ContactNo=? WHERE MemberID = ?";
+        return SQLUtil.execute(sql,membersDTO.getFistName(),membersDTO.getLastName(),membersDTO.getAge(),membersDTO.getGender(),membersDTO.getBirth(),membersDTO.getEmail(),membersDTO.getContactNo(),membersDTO.getMemberID());
 
-        pstm.setString(1, memberID);
-
-        return pstm.executeUpdate() > 0;
     }
-    public static boolean updatemember(MembersDTO dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "UPDATE Member SET EquipmentName = ?, EquipmentQty = ?, PurchaseDate = ? WHERE EquipmentID = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, dto.getMemberID());
-        pstm.setString(2, dto.getFistName());
-        pstm.setString(3, dto.getLastName());
-        pstm.setString(4, dto.getGender());
-        pstm.setString(4, dto.getEmail());
-        pstm.setString(4, dto.getContactNo());
-        pstm.setString(4, dto.getBirth());
-
-
-
-        return pstm.executeUpdate() > 0;
-    }
-
 }

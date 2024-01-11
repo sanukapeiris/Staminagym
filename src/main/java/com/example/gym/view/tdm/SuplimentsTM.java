@@ -1,4 +1,4 @@
-package com.example.gym.dto.tm;
+package com.example.gym.view.tdm;
 import lombok.*;
 
 @Getter

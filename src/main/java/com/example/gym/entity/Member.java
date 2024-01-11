@@ -1,19 +1,23 @@
-package com.example.gym.dto.tm;
+package com.example.gym.entity;
+
 
 import lombok.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-public class MemberTM {
+
+public class Member {
     private String MemberID;
-    private String FistName;
+    private String FirstName;
     private String LastName;
-    private String Age;
+    private int Age;
     private String Gender;
-    private String Birth ;
+    private LocalDate BirthDate;
     private String Email;
     private String ContactNo;
+
 }

@@ -1,10 +1,6 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.MembersDTO;
-import com.example.gym.dto.PaymentDTO;
-import com.example.gym.dto.tm.MemberTM;
-import com.example.gym.dto.tm.PaymentTM;
-import com.example.gym.model.MembersModel;
+import com.example.gym.view.tdm.PaymentTM;
 import com.example.gym.model.PaymentModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

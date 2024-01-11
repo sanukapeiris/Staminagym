@@ -1,6 +1,6 @@
 package com.example.gym.dto;
 
-import com.example.gym.dto.tm.CartTM;
+import com.example.gym.view.tdm.CartTM;
 import lombok.*;
 
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package com.example.gym.controller;
 
 import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.ReportDTO;
-import com.example.gym.model.EquipmentModel;
 import com.example.gym.model.ReportModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +17,6 @@ import javafx.scene.control.DatePicker;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.regex.Pattern;
 
 public class Report {
 

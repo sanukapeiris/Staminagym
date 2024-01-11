@@ -1,6 +1,6 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.tm.InventoryTM;
+import com.example.gym.view.tdm.InventoryTM;
 import com.example.gym.model.InventoryModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -2,10 +2,7 @@ package com.example.gym.controller;
 
 import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.FeedbackDTO;
-import com.example.gym.dto.MembersDTO;
-import com.example.gym.model.EquipmentModel;
 import com.example.gym.model.FeedbackModel;
-import com.example.gym.model.MembersModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +12,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.HashMap;
 
 public class Feedback {
 

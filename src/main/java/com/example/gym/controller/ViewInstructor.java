@@ -1,11 +1,7 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.InstructoreDTO;
-import com.example.gym.dto.MembersDTO;
-import com.example.gym.dto.tm.InstructoreTM;
-import com.example.gym.dto.tm.MemberTM;
+import com.example.gym.view.tdm.InstructoreTM;
 import com.example.gym.model.InstructionModel;
-import com.example.gym.model.MembersModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

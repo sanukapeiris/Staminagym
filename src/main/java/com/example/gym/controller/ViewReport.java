@@ -1,6 +1,6 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.tm.ReportTM;
+import com.example.gym.view.tdm.ReportTM;
 import com.example.gym.model.ReportModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

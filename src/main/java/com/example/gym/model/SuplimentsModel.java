@@ -1,16 +1,13 @@
 package com.example.gym.model;
 
 import com.example.gym.db.DbConnection;
-import com.example.gym.dto.ReportDTO;
 import com.example.gym.dto.SuplimentsDTO;
-import com.example.gym.dto.tm.ReportTM;
-import com.example.gym.dto.tm.SuplimentsTM;
+import com.example.gym.view.tdm.SuplimentsTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

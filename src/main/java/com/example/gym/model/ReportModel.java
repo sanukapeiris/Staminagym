@@ -1,9 +1,9 @@
 package com.example.gym.model;
 
+import com.example.gym.dao.SQLUtil;
 import com.example.gym.db.DbConnection;
 import com.example.gym.dto.ReportDTO;
-import com.example.gym.dto.tm.PaymentTM;
-import com.example.gym.dto.tm.ReportTM;
+import com.example.gym.view.tdm.ReportTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportModel {
-    public static boolean saveReport(ReportDTO dto)  throws SQLException {
+    /*public static boolean saveReport(ReportDTO dto)  throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO report VALUES(?, ?, ?)";
@@ -29,6 +29,13 @@ public class ReportModel {
         return isSaved;
     }
 
+     */
+
+    public static boolean saveReport(ReportDTO reportDTO) throws SQLException {
+        String sql = "INSERT INTO Report(FromDate,ToDate,Income) VALUES(?,?,?)";
+        boolean isSaved = SQLUtil.execute(sql, reportDTO.getFromDate(),reportDTO.getToDate(),reportDTO.getIncome());
+        return isSaved;
+    }
     public static List<ReportTM> getAll() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql = "SELECT * FROM report";

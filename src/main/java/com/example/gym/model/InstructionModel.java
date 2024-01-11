@@ -1,10 +1,9 @@
 package com.example.gym.model;
 
+import com.example.gym.dao.SQLUtil;
 import com.example.gym.db.DbConnection;
-import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.InstructoreDTO;
-import com.example.gym.dto.MembersDTO;
-import com.example.gym.dto.tm.InstructoreTM;
+import com.example.gym.view.tdm.InstructoreTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,25 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InstructionModel {
-    public static boolean saveInstruction(InstructoreDTO dto)  throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "INSERT INTO instructor VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, dto.getInstructorID());
-        pstm.setString(2, dto.getFistName());
-        pstm.setString(3, dto.getLastName());
-        pstm.setString(4, dto.getAge());
-        pstm.setString(5, dto.getGender());
-        pstm.setString(6, dto.getBirth());
-        pstm.setString(7, dto.getEmail());
-        pstm.setString(8, dto.getContactno());
-
-        boolean isSaved = pstm.executeUpdate() > 0;
-
+    public static boolean saveInstruction(InstructoreDTO instructoreDTO) throws SQLException {
+        String sql = "INSERT INTO Instructor(InstructorID,FirstName,LastName,Age,Gender,BirthDate,Email,ContactNo) VALUES(?,?,?,?,?,?,?,?)";
+        boolean isSaved = SQLUtil.execute(sql, instructoreDTO.getInstructorID(),instructoreDTO.getFistName(),instructoreDTO.getLastName(),instructoreDTO.getAge(),instructoreDTO.getGender(),instructoreDTO.getBirth(),instructoreDTO.getEmail(),instructoreDTO.getContactno());
         return isSaved;
     }
+
+
 
     public static List<InstructoreTM> getAll()  throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
@@ -62,16 +50,6 @@ public class InstructionModel {
 
     }
 
-    public static boolean deleteInstruction(String memberID) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
-
-        String sql = "DELETE FROM instructor WHERE InstructorID = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-
-        pstm.setString(1, memberID);
-
-        return pstm.executeUpdate() > 0;
-    }
 
     public static InstructoreDTO search(String instructoremodel) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
@@ -89,30 +67,23 @@ public class InstructionModel {
                     resultSet.getString(1),
                     resultSet.getString(2),
                     resultSet.getString(3),
-                    resultSet.getString(4),
+                    resultSet.getInt(4),
                     resultSet.getString(5),
-                    resultSet.getString(6),
+                    resultSet.getDate(6).toLocalDate(),
                     resultSet.getString(7),
                     resultSet.getString(8)
             );
         }
         return dto;
     }
-    public static boolean updateInstructore(InstructoreDTO dto) throws SQLException {
-        Connection connection = DbConnection.getInstance().getConnection();
 
-        String sql = "UPDATE instructor SET EquipmentName = ?, EquipmentQty = ?, PurchaseDate = ? WHERE EquipmentID = ?";
-        PreparedStatement pstm = connection.prepareStatement(sql);
-        pstm.setString(1, dto.getInstructorID());
-        pstm.setString(2, dto.getFistName());
-        pstm.setString(3, dto.getLastName());
-        pstm.setString(4, dto.getGender());
-        pstm.setString(4, dto.getEmail());
-        pstm.setString(4, dto.getContactno());
-        pstm.setString(4, dto.getBirth());
+    public static boolean updateInstructore(InstructoreDTO instructoreDTO) throws SQLException {
+        String sql = "UPDATE Instructor set FirstName=?,LastName=?,Age=?,Gender=?,BirthDate=?,Email=?,ContactNo=? WHERE InstructorID = ?";
+        return SQLUtil.execute(sql,instructoreDTO.getFistName(),instructoreDTO.getLastName(),instructoreDTO.getAge(),instructoreDTO.getGender(),instructoreDTO.getBirth(),instructoreDTO.getEmail(),instructoreDTO.getContactno(),instructoreDTO.getInstructorID());
 
-
-
-        return pstm.executeUpdate() > 0;
+    }
+    public static boolean deleteInstruction(String itemId) throws SQLException {
+        String sql = "DELETE FROM Instructor WHERE InstructorID = ?";
+        return SQLUtil.execute(sql,itemId);
     }
 }

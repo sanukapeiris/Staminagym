@@ -1,14 +1,10 @@
 package com.example.gym.model;
 
-import com.example.gym.controller.Inventory;
+import com.example.gym.dao.SQLUtil;
 import com.example.gym.db.DbConnection;
-import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.dto.InventoryDTO;
-import com.example.gym.dto.MembersDTO;
-import com.example.gym.dto.PaymentDTO;
-import com.example.gym.dto.tm.CartTM;
-import com.example.gym.dto.tm.InventoryTM;
-import com.example.gym.dto.tm.PaymentTM;
+import com.example.gym.view.tdm.CartTM;
+import com.example.gym.view.tdm.InventoryTM;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryModel {
-    public static boolean saveInventory(InventoryDTO dto)  throws SQLException {
+    /*public static boolean saveInventory(InventoryDTO dto)  throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
 
         String sql = "INSERT INTO inventory VALUES(?, ?, ?)";
@@ -29,6 +25,17 @@ public class InventoryModel {
         pstm.setString(3, dto.getProductPrice());
         boolean isSaved = pstm.executeUpdate() > 0;
 
+        return isSaved;
+    }
+     */
+    public static boolean updateInventory(InventoryDTO inventoryDTO) throws SQLException {
+        String sql = "UPDATE item set ProductQty=?,ProductPrice=? WHERE ProductName = ?";
+        return SQLUtil.execute(sql,inventoryDTO.getProductQty(),inventoryDTO.getProductPrice(),inventoryDTO.getProductName());
+
+    }
+    public static boolean saveInventory(InventoryDTO inventoryDTO) throws SQLException {
+        String sql = "INSERT INTO Inventory(ProductName,ProductQty,ProductPrice) VALUES(?,?,?)";
+        boolean isSaved = SQLUtil.execute(sql, inventoryDTO.getProductName(),inventoryDTO.getProductQty(),inventoryDTO.getProductPrice());
         return isSaved;
     }
     public static List<InventoryTM> getAll() throws SQLException {
@@ -111,5 +118,9 @@ public class InventoryModel {
         pstm.setString(2, name);
 
         return pstm.executeUpdate() > 0;//false
-}
+    }
+    public static boolean deleteInventory(String itemId) throws SQLException {
+        String sql = "DELETE FROM inventory WHERE ProductName = ?";
+        return SQLUtil.execute(sql,itemId);
+    }
 }

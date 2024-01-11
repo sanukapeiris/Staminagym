@@ -1,5 +1,6 @@
 package com.example.gym.dto;
 
+import com.example.gym.entity.Feedback;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @ToString
 @NoArgsConstructor
 
-public class FeedbackDTO {
+public class FeedbackDTO extends Feedback {
     private LocalDate Date;
     private String Feedback ;
 }
