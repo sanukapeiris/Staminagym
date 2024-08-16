@@ -1,7 +1,11 @@
 package com.example.gym.controller;
 
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.EquipmentBO;
 import com.example.gym.dto.EquipmentDTO;
-import com.example.gym.model.EquipmentModel;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,10 +54,12 @@ public class Equipment {
 
     @FXML
     private DatePicker txtpurchasedate;
-    private EquipmentModel cusModel = new EquipmentModel();
-   /* EquipmentBO customerBO= (EquipmentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.CUSTOMER);
+    EquipmentBO equipmentBO = (EquipmentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EQUIPMENT);
 
-    */
+
+    ObservableList<EquipmentDTO> observableList = FXCollections.observableArrayList();
+
+
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -227,6 +233,7 @@ public class Equipment {
      void btnsaveonaction(ActionEvent event) {
          boolean isValidated = validateItem();
          if (isValidated) {
+
              String id = txtEquipmentid.getText();
              String name = txtEquipmentname.getText();
              String type = txtEquipmenttype.getText();
@@ -235,17 +242,18 @@ public class Equipment {
              var dto = new EquipmentDTO(id, name, type, date);
 
              try {
-                 boolean isSaved = EquipmentModel.saveEquipment(dto);
+                 boolean isSaved = equipmentBO.saveEquipment(new EquipmentDTO(id,name,type,date));
 
                  if (isSaved) {
-                     new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
-                     clearFields();
+                 } else {
+                     new Alert(Alert.AlertType.ERROR, "Not saved  !!!").show();
                  }
-             } catch (SQLException e) {
+             } catch (SQLException | ClassNotFoundException e) {
                  new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
              }
          }
      }
+
 
 
     private void clearFields() {
@@ -261,7 +269,7 @@ public class Equipment {
         String memberID = txtEquipmentid.getText();
 
         try {
-            boolean isDeleted = EquipmentModel.deleteEquipment(memberID);
+            boolean isDeleted = equipmentBO.deleteEquipment(memberID);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member deleted!").show();
             } else {
@@ -269,7 +277,7 @@ public class Equipment {
 
                 new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -300,15 +308,17 @@ public class Equipment {
         String id = txtEquipmentid.getText();
 
         try {
-            EquipmentDTO dto = EquipmentModel.search(id);
+            EquipmentDTO dto = equipmentBO.search(id);
             if (dto != null) {
                 viewCustomerReport(dto);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
-   /* @FXML
+
+
+   @FXML
     void btnupdateonaction(ActionEvent event) {
         String id = txtEquipmentid.getText();
         String name = txtEquipmentname.getText();
@@ -318,23 +328,24 @@ public class Equipment {
         var dto = new EquipmentDTO(id, name, type, purchasedate);
 
         try {
-            boolean isUpdated = cusModel.updateEquipment(dto);
+            boolean isUpdated = equipmentBO.updateEquipment(dto);
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
 
-    */
+
+
 
     private void viewCustomerReport(EquipmentDTO dto) throws JRException {
         HashMap hashMap = new HashMap();
         hashMap.put("id", dto.getEquipmentid());
         hashMap.put("name", dto.getEquipmentname());
-        hashMap.put("type", dto.getEquipmenttype());
+        hashMap.put("type", dto.getEquipmentQTY());
         hashMap.put("date", dto.getPurchaseDate());
 
 
@@ -351,43 +362,25 @@ public class Equipment {
         JasperViewer.viewReport(jasperPrint, false);
     }
 
-    @FXML
-    void btnupdateonaction(ActionEvent event) {
-        String id = txtEquipmentid.getText();
-        String name = txtEquipmentname.getText();
-        String type = txtEquipmenttype.getText();
-        String purchasedate = String.valueOf(txtpurchasedate.getValue());
 
-        var dto = new EquipmentDTO(id, name, type, purchasedate);
-
-        try {
-            boolean isUpdated = cusModel.updateEquipment(dto);
-            if (isUpdated) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
-                clearFields();
-            }
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-        }
-    }
 
     @FXML
     void txtEquipmentidSearchOnAction(ActionEvent event) {
         String Equipmentid = txtEquipmentid.getText();
 
         try {
-            EquipmentDTO equipmentDTO = EquipmentModel.search(Equipmentid);
+            EquipmentDTO equipmentDTO = equipmentBO.search(Equipmentid);
 
             if (equipmentDTO != null) {
                 txtEquipmentid.setText(equipmentDTO.getEquipmentid());
                 txtEquipmentname.setText(equipmentDTO.getEquipmentname());
-                txtEquipmenttype.setText(equipmentDTO.getEquipmenttype());
+                txtEquipmenttype.setText(equipmentDTO.getEquipmentQTY());
                 txtpurchasedate.setValue(LocalDate.parse(String.valueOf(equipmentDTO.getPurchaseDate())));
             } else {
                 new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

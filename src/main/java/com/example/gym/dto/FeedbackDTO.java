@@ -12,6 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 
 public class FeedbackDTO extends Feedback {
-    private LocalDate Date;
+    private LocalDate FeedbackDate;
     private String Feedback ;
 }

@@ -2,6 +2,7 @@ package com.example.gym.model;
 
 import com.example.gym.dao.SQLUtil;
 import com.example.gym.db.DbConnection;
+import com.example.gym.dto.HealthReportDTO;
 
 
 import java.sql.Connection;

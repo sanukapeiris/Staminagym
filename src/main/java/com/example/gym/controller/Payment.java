@@ -1,5 +1,6 @@
 package com.example.gym.controller;
-import com.example.gym.dto.EquipmentDTO;
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.PaymentBO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.model.MembersModel;
 import javafx.collections.FXCollections;
@@ -36,6 +37,8 @@ public class Payment {
     private TextField txtpaymenttype;
 
     private PaymentModel paymentModel = new PaymentModel();
+    PaymentBO paymentBO = (PaymentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.Payment);
+
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -159,13 +162,13 @@ public class Payment {
         var dto = new PaymentDTO(memberid,paymenttype,accountno);
 
         try {
-            boolean isSaved = PaymentModel.savePayment(dto);
+            boolean isSaved = paymentBO.savePayment(dto);
 
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "payment detales!").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -183,13 +186,13 @@ public class Payment {
         String memberID = txtaccountno.getText();
 
         try {
-            boolean isDeleted = PaymentModel.deletepayments(memberID);
+            boolean isDeleted = paymentBO.deletePayment(memberID);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member deleted!").show();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }

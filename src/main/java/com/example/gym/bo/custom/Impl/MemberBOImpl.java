@@ -3,7 +3,9 @@ package com.example.gym.bo.custom.Impl;
 import com.example.gym.bo.custom.MemberBO;
 import com.example.gym.dao.DAOFactory;
 import com.example.gym.dao.custom.MembersDAO;
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.MembersDTO;
+import com.example.gym.entity.Member;
 import com.example.gym.entity.Member;
 
 import java.sql.SQLException;
@@ -35,5 +37,10 @@ public class MemberBOImpl implements MemberBO {
     @Override
     public boolean deleteMembers(String id) throws SQLException, ClassNotFoundException {
         return membersDAO.delete(id);
+    }
+    @Override
+    public MembersDTO search(String MembersId) throws SQLException, ClassNotFoundException {
+        Member member =  membersDAO.search(MembersId);
+        return new MembersDTO(member.getMemberID(),member.getFirstName(),member.getLastName(),member.getAge(),member.getGender(),member.getBirthDate(),member.getEmail(),member.getContactNo());
     }
 }

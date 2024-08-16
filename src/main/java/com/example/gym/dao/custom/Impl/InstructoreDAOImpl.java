@@ -15,7 +15,7 @@ public class InstructoreDAOImpl implements InstructoreDAO {
         ArrayList<Instructore> getAllCustomer=new ArrayList<>();
         while (rst.next()){
             Instructore entity=new Instructore(rst.getString("InstructorID"),
-                    rst.getString("FirstName"), rst.getString("LastName"), rst.getString("Age"), rst.getString("Gender"), rst.getString("BirthDate"), rst.getString("Email"), rst.getString("ContactNo"));
+                    rst.getString("FirstName"), rst.getString("LastName"), rst.getInt("Age"), rst.getString("Gender"), rst.getDate("BirthDate").toLocalDate(), rst.getString("Email"), rst.getString("ContactNo"));
             getAllCustomer.add(entity);
         }
         return getAllCustomer;
@@ -38,6 +38,6 @@ public class InstructoreDAOImpl implements InstructoreDAO {
     public Instructore search(String id) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM Instructor WHERE InstructorID=?",id);
         rst.next();
-        return new Instructore(id + "", rst.getString("FirstName"), rst.getString("LastName"), rst.getString("Age"), rst.getString("Gender"), rst.getString("BirthDate"), rst.getString("Email"), rst.getString("ContactNo"));
+        return new Instructore(id + "", rst.getString("FirstName"), rst.getString("LastName"), rst.getInt("Age"), rst.getString("Gender"), rst.getDate("BirthDate").toLocalDate(), rst.getString("Email"), rst.getString("ContactNo"));
     }
 }

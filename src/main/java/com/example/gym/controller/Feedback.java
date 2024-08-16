@@ -1,8 +1,8 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.EquipmentDTO;
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.FeedbackBO;
 import com.example.gym.dto.FeedbackDTO;
-import com.example.gym.model.FeedbackModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +29,9 @@ public class Feedback {
     @FXML
     private TextField txtfeedback;
 
-    private FeedbackModel cusModel = new FeedbackModel();
+
+    FeedbackBO feedbackBO = (FeedbackBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.FEEDBACK);
+
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -168,7 +170,7 @@ public class Feedback {
 
             var dto = new FeedbackDTO( Date,feedback);
             try {
-                boolean isSaved = FeedbackModel.saveFeedback(dto);
+                boolean isSaved = feedbackBO.saveFeedback(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
@@ -176,6 +178,8 @@ public class Feedback {
                 }
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
 
     }

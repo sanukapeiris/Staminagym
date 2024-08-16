@@ -3,6 +3,7 @@ package com.example.gym.bo.custom.Impl;
 import com.example.gym.bo.custom.PaymentBO;
 import com.example.gym.dao.DAOFactory;
 import com.example.gym.dao.custom.PaymentsDAO;
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.PaymentDTO;
 import com.example.gym.entity.Payment;
 
@@ -36,4 +37,5 @@ public class PamentBOImpl implements PaymentBO {
     public boolean deletePayment(String id) throws SQLException, ClassNotFoundException {
         return membersDAO.delete(id);
     }
+
 }

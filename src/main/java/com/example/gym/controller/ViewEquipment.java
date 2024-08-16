@@ -1,8 +1,9 @@
 package com.example.gym.controller;
 
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.EquipmentBO;
 import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.view.tdm.EquipmentTM;
-import com.example.gym.model.EquipmentModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +41,8 @@ public class ViewEquipment implements Initializable {
 
     @FXML
     private TableColumn<?, ?> colPurchaseDatr;
+    EquipmentBO equipmentBO = (EquipmentBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.EQUIPMENT);
+
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Members.fxml"));
@@ -164,13 +167,13 @@ public class ViewEquipment implements Initializable {
     private void getAll() {
         ObservableList<EquipmentTM> obList = FXCollections.observableArrayList();
         try {
-            List<EquipmentDTO> dtoList = EquipmentModel.getAll();
+            List<EquipmentDTO> dtoList = equipmentBO.getAllCustomer();
 
             for (EquipmentDTO dto : dtoList) {
                 obList.add(new EquipmentTM(
                         dto.getEquipmentid(),
                         dto.getEquipmentname(),
-                        dto.getEquipmenttype(),
+                        dto.getEquipmentQTY(),
                         dto.getPurchaseDate()
 
 
@@ -178,7 +181,7 @@ public class ViewEquipment implements Initializable {
             }
             tblEquipment.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

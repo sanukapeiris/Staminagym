@@ -1,8 +1,8 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.EquipmentDTO;
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.ReportBO;
 import com.example.gym.dto.ReportDTO;
-import com.example.gym.model.ReportModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +32,8 @@ public class Report {
 
     @FXML
     private TextField txtreport;
+    ReportBO reportBO = (ReportBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.Report);
+
 
 
 
@@ -156,13 +158,13 @@ public class Report {
             var dto = new ReportDTO(fromdate,todate,income);
 
             try {
-                boolean isSaved = ReportModel.saveReport(dto);
+                boolean isSaved = reportBO.saveReport(dto);
 
                 if (isSaved) {
                     new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
                     clearFields();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
             }
     }
@@ -182,8 +184,7 @@ public class Report {
         stage.centerOnScreen();
     }
 
-    public void btndeleteonaction(ActionEvent actionEvent) {
-    }
+
 
 }
 

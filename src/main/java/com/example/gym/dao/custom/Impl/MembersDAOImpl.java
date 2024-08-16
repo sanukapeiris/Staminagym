@@ -2,6 +2,7 @@ package com.example.gym.dao.custom.Impl;
 
 import com.example.gym.dao.SQLUtil;
 import com.example.gym.dao.custom.MembersDAO;
+import com.example.gym.entity.Instructore;
 import com.example.gym.entity.Member;
 
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ public class MembersDAOImpl implements MembersDAO {
         ArrayList<Member> getAllCustomer=new ArrayList<>();
         while (rst.next()){
             Member entity=new Member(rst.getString("MemberID"),
-                    rst.getString("FirstName"), rst.getString("LastName"), rst.getInt("Age"), rst.getString("Gender"), rst.getString("BirthDate"), rst.getString("Email"), rst.getString("ContactNo"));
+                    rst.getString("FirstName"), rst.getString("LastName"), rst.getInt("Age"), rst.getString("Gender"), rst.getDate("BirthDate").toLocalDate(), rst.getString("Email"), rst.getString("ContactNo"));
             getAllCustomer.add(entity);
         }
         return getAllCustomer;
@@ -39,7 +40,7 @@ public class MembersDAOImpl implements MembersDAO {
     public Member search(String id) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM Members WHERE MemberID=?",id);
         rst.next();
-        return new Member(id + "",rst.getString("FirstName"), rst.getString("LastName"), rst.getInt("Age"), rst.getString("Gender"), rst.getString("BirthDate"), rst.getString("Email"), rst.getString("ContactNo"));
+        return new Member(id + "",rst.getString("FirstName"), rst.getString("LastName"), rst.getInt("Age"), rst.getString("Gender"), rst.getDate("BirthDate").toLocalDate(), rst.getString("Email"), rst.getString("ContactNo"));
     }
 
 }

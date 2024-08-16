@@ -1,6 +1,7 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.EquipmentDTO;
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.InstructoreBO;
 import com.example.gym.dto.InstructoreDTO;
 import com.example.gym.model.InstructionModel;
 import javafx.collections.FXCollections;
@@ -53,6 +54,7 @@ public class Instructore {
     @FXML
     private TextField txtEmail;
     private InstructionModel InstructoreModel = new InstructionModel();
+    InstructoreBO instructoreBO = (InstructoreBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.Instructore);
 
     ObservableList<InstructoreDTO> observableList = FXCollections.observableArrayList();
 
@@ -183,13 +185,13 @@ public class Instructore {
         var dto = new InstructoreDTO(Instructorid,firstname,lastname,age,gender,birth,Email,contactno);
 
         try {
-            boolean isSaved = InstructionModel.saveInstruction(dto);
+            boolean isSaved = instructoreBO.saveInstructore(dto);
 
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -213,13 +215,13 @@ public class Instructore {
         String memberID = txtInstructorid.getText();
 
         try {
-            boolean isDeleted = InstructionModel.deleteInstruction(memberID);
+            boolean isDeleted = instructoreBO.deleteInstructore(memberID);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member deleted!").show();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -238,11 +240,11 @@ public class Instructore {
         String id = txtInstructorid.getText();
 
         try {
-            InstructoreDTO dto = InstructionModel.search(id);
+            InstructoreDTO dto = instructoreBO.search(id);
             if(dto!=null){
                 viewCustomerReport(dto);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -284,7 +286,7 @@ public class Instructore {
 
         boolean isUpdated = false;
         try {
-            isUpdated = InstructionModel.updateInstructore(new InstructoreDTO(id, firstname, lastname, age,gender ,birth,email,contact));
+            isUpdated = instructoreBO.updateInstructore(new InstructoreDTO(id, firstname, lastname, age,gender ,birth,email,contact));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
                 txtInstructorid.setText("");
@@ -300,7 +302,7 @@ public class Instructore {
             } else {
                 new Alert(Alert.AlertType.ERROR, "Update failed").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -345,7 +347,7 @@ void btnupdateonaction(ActionEvent event) {
         String Instructorid = txtInstructorid.getText();
 
         try {
-            InstructoreDTO instructoreDTO= InstructionModel.search(Instructorid);
+            InstructoreDTO instructoreDTO= instructoreBO.search(Instructorid);
 
             if (instructoreDTO != null) {
                 txtInstructorid.setText(instructoreDTO.getInstructorID());
@@ -360,7 +362,7 @@ void btnupdateonaction(ActionEvent event) {
                 new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
 
         }

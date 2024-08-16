@@ -3,6 +3,7 @@ package com.example.gym.dao.custom.Impl;
 import com.example.gym.dao.SQLUtil;
 import com.example.gym.dao.custom.FeedbackDAO;
 import com.example.gym.entity.Feedback;
+import com.example.gym.entity.Instructore;
 
 
 import java.sql.ResultSet;
@@ -15,7 +16,7 @@ public class FeedbackDAOImpl implements FeedbackDAO {
         ResultSet rst = SQLUtil.execute("SELECT * FROM Feedback");
         ArrayList<Feedback> getAllCustomer=new ArrayList<>();
         while (rst.next()){
-            Feedback entity=new Feedback(rst.getString("FeedbackDate"), rst.getString("FeedbackText"));
+            Feedback entity=new Feedback(rst.getDate("FeedbackDate").toLocalDate(), rst.getString("FeedbackText"));
             getAllCustomer.add(entity);
         }
         return getAllCustomer;
@@ -39,7 +40,7 @@ public class FeedbackDAOImpl implements FeedbackDAO {
     public Feedback search(String id) throws SQLException, ClassNotFoundException {
         ResultSet rst = SQLUtil.execute("SELECT * FROM Feedback WHERE id=?",id);
         rst.next();
-        return new Feedback(rst.getString("EquipmentName"), rst.getString("EquipmentQty"));
+        return new Feedback(rst.getDate("FeedbackDate").toLocalDate(), rst.getString("FeedbackText"));
     }
 
 

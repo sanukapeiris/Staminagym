@@ -1,5 +1,8 @@
 package com.example.gym.controller;
 
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.HealthReportBO;
+import com.example.gym.dto.HealthReportDTO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.model.MembersModel;
 import com.example.gym.model.HealthReportModel;
@@ -53,6 +56,8 @@ public class HealthReport  {
 
     //@FXML
     //private JFXComboBox<?> cmdmemberid;
+    HealthReportBO healthReportBO = (HealthReportBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.HEALTHREPORT);
+
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -191,13 +196,13 @@ public class HealthReport  {
         var dto = new HealthReportDTO(healthreportid,id,Weight,Height,MedicalCondition,BodyFat);
 
         try {
-            boolean isSaved = HealthReportModel.saveHealthReport(dto);
+            boolean isSaved = healthReportBO.saveHealthReport(dto);
 
             if (isSaved) {
                 new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -216,7 +221,7 @@ public class HealthReport  {
         String HealthreportID = txthealthreportid.getText();
 
         try {
-            boolean isDeleted = HealthReportModel.deletehealthreport(HealthreportID);
+            boolean isDeleted = healthReportBO.deleteHealthReport(HealthreportID);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Health Report deleted!").show();
             } else {
@@ -224,7 +229,7 @@ public class HealthReport  {
 
                 new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -241,7 +246,7 @@ public class HealthReport  {
     private void loadMemberId() {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
-            List<MembersDTO> memberTMS = MembersModel.getAll();
+            List<MembersDTO> memberTMS = membersModel.getAll();
 
             for (MembersDTO dto : memberTMS) {
                 obList.add(dto.getMemberID());
@@ -264,57 +269,22 @@ public class HealthReport  {
         var dto = new HealthReportDTO (Memberid,HRid, weigh, height, medical,fat);
 
         try {
-            boolean isUpdated = HelthModel.updateHealth(dto);
+            boolean isUpdated = healthReportBO.updateHealthReport(dto);
             if(isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Equipment updated!").show();
                 clearFields();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
-    /*@FXML
-void btnupdateonaction(ActionEvent event) {
-    String id = txtmemberid.getText();
-    String firstname = txtfirstname.getText();
-    String lastname = txtlastname.getText();
-    Integer age = Integer.valueOf(txtage.getText());
-    String gender = txtgender.getText();
-    LocalDate birthdate = LocalDate.parse(String.valueOf(txtbirth.getValue()));
-    String email = txtemail.getText();
-    String contact = txtcontactno.getText();
 
-
-    boolean isUpdated = false;
-    try {
-        isUpdated = MembersModel.updatemember(new MembersDTO(id, firstname, lastname, age,gender ,birthdate,email,contact));
-        if (isUpdated) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
-            txtmemberid.setText("");
-            txtfirstname.setText("");
-            txtlastname.setText("");
-            txtage.setText("");
-            txtgender.setText("");
-            txtbirth.setValue(LocalDate.parse(""));
-            txtemail.setText("");
-            txtcontactno.setText("");
-            observableList.clear();
-
-        } else {
-            new Alert(Alert.AlertType.ERROR, "Update failed").show();
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
-
- */
     @FXML
     void txtHealthReportIDSearchOnAction(ActionEvent event) {
         String memberid = txthealthreportid.getText();
 
         try {
-            HealthReportDTO healthReportDTO= HealthReportModel.search(memberid);
+            HealthReportDTO healthReportDTO= healthReportBO.search(memberid);
 
             if (healthReportDTO != null) {
                 cmdmemberid.setValue(healthReportDTO.getMemberID());
@@ -327,7 +297,7 @@ void btnupdateonaction(ActionEvent event) {
                 new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

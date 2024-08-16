@@ -3,7 +3,10 @@ package com.example.gym.bo.custom.Impl;
 import com.example.gym.bo.custom.InstructoreBO;
 import com.example.gym.dao.DAOFactory;
 import com.example.gym.dao.custom.InstructoreDAO;
+import com.example.gym.dto.EquipmentDTO;
+import com.example.gym.dto.HealthReportDTO;
 import com.example.gym.dto.InstructoreDTO;
+import com.example.gym.entity.Instructore;
 import com.example.gym.entity.Instructore;
 
 import java.sql.SQLException;
@@ -35,5 +38,10 @@ public class InstructorBOImpl implements InstructoreBO {
     @Override
     public boolean deleteInstructore(String id) throws SQLException, ClassNotFoundException {
         return InstructorDAO .delete(id);
+    }
+    @Override
+    public InstructoreDTO search(String InstructoreId) throws SQLException, ClassNotFoundException {
+        Instructore Instructore =  InstructorDAO.search(InstructoreId);
+        return new InstructoreDTO(Instructore.getInstructorID(),Instructore.getFistName(),Instructore.getLastName(),Instructore.getAge(),Instructore.getGender(),Instructore.getBirth(),Instructore.getEmail(),Instructore.getContactno());
     }
 }

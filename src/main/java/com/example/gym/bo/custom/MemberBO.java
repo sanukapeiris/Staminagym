@@ -1,6 +1,7 @@
 package com.example.gym.bo.custom;
 
 import com.example.gym.bo.SuperBO;
+import com.example.gym.dto.HealthReportDTO;
 import com.example.gym.dto.MembersDTO;
 
 import java.sql.SQLException;
@@ -11,5 +12,7 @@ public interface MemberBO  extends SuperBO {
     boolean saveMembers(MembersDTO dto) throws SQLException, ClassNotFoundException;
     boolean updateMembers(MembersDTO dto) throws SQLException, ClassNotFoundException;
     boolean deleteMembers(String id) throws SQLException, ClassNotFoundException;
+    MembersDTO search(String MembersId) throws SQLException, ClassNotFoundException;
+
 
 }

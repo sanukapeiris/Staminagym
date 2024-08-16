@@ -23,16 +23,25 @@ public class EquipmentBOImpl implements EquipmentBO {
 
     @Override
     public boolean saveEquipment(EquipmentDTO dto) throws SQLException, ClassNotFoundException {
-        return equipmentDAO.save(new Equipment(dto.getEquipmentid(),dto.getEquipmentname(),dto.getEquipmenttype(),dto.getPurchaseDate()));
+        return equipmentDAO.save(new Equipment(dto.getEquipmentid(),dto.getEquipmentname(),dto.getEquipmentQTY(),dto.getPurchaseDate()));
     }
 
     @Override
     public boolean updateEquipment(EquipmentDTO dto) throws SQLException, ClassNotFoundException {
-        return equipmentDAO.update(new Equipment(dto.getEquipmentid(),dto.getEquipmentname(),dto.getEquipmenttype(),dto.getPurchaseDate()));
+        return equipmentDAO.update(new Equipment(dto.getEquipmentid(),dto.getEquipmentname(),dto.getEquipmentQTY(),dto.getPurchaseDate()));
     }
 
     @Override
     public boolean deleteEquipment(String id) throws SQLException, ClassNotFoundException {
         return equipmentDAO.delete(id);
     }
+    @Override
+    public EquipmentDTO search(String EquipmentId) throws SQLException, ClassNotFoundException {
+        Equipment  equipment =  equipmentDAO.search(EquipmentId);
+        return new EquipmentDTO(equipment.getId(), equipment.getName(), equipment.getQty(), equipment.getDate());
+    }
+
+
+
+
 }

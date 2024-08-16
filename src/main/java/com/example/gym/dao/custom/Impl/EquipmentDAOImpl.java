@@ -3,6 +3,7 @@ package com.example.gym.dao.custom.Impl;
 import com.example.gym.dao.SQLUtil;
 import com.example.gym.dao.custom.EquipmentDAO;
 import com.example.gym.entity.Equipment;
+import com.example.gym.entity.Instructore;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

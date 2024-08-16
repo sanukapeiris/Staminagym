@@ -36,6 +36,7 @@ public class Inventory {
     @FXML
     private AnchorPane root;
 
+
     public void btnsaveonaction(ActionEvent actionEvent) {
         String productname = txtProductName.getText();
         String productqty = txtproductqty.getText();

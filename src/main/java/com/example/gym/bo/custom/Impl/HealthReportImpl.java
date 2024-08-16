@@ -4,7 +4,9 @@ import com.example.gym.bo.custom.HealthReportBO;
 import com.example.gym.dao.DAOFactory;
 import com.example.gym.dao.custom.HealthReportDAO;
 import com.example.gym.dao.custom.HealthReportDAO ;
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.HealthReportDTO;
+import com.example.gym.entity.Equipment;
 import com.example.gym.entity.HealthReport;
 
 import java.sql.SQLException;
@@ -36,6 +38,11 @@ public class HealthReportImpl implements HealthReportBO {
     @Override
     public boolean deleteHealthReport(String id) throws SQLException, ClassNotFoundException {
         return healthReportDAO .delete(id);
+    }
+    @Override
+    public HealthReportDTO search(String HealthreportId) throws SQLException, ClassNotFoundException {
+        HealthReport healthReport =  healthReportDAO.search(HealthreportId);
+        return new HealthReportDTO(healthReport.getHealthReportID(), healthReport.getMemberID(), healthReport.getWeight(),healthReport.getHeight(),healthReport.getMedicalCondition(),healthReport.getBodyFatpercentage());
     }
 
 

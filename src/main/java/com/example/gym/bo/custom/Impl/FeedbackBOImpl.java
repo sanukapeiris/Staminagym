@@ -27,6 +27,6 @@ public class FeedbackBOImpl implements FeedbackBO {
 
     @Override
     public boolean saveFeedback(FeedbackDTO dto) throws SQLException, ClassNotFoundException {
-        return feedbackDAO.save(new FeedbackDTO(dto.getDate(),dto.getFeedback()));
+        return feedbackDAO.save(new FeedbackDTO(dto.getFeedbackDate(),dto.getFeedback()));
     }
 }

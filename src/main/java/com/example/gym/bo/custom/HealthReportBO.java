@@ -1,6 +1,7 @@
 package com.example.gym.bo.custom;
 
 import com.example.gym.bo.SuperBO;
+import com.example.gym.dto.EquipmentDTO;
 import com.example.gym.dto.HealthReportDTO;
 
 import java.sql.SQLException;
@@ -11,5 +12,7 @@ public interface HealthReportBO  extends SuperBO {
     boolean saveHealthReport(HealthReportDTO dto) throws SQLException, ClassNotFoundException;
     boolean updateHealthReport(HealthReportDTO dto) throws SQLException, ClassNotFoundException;
     boolean deleteHealthReport(String id) throws SQLException, ClassNotFoundException;
+
+    HealthReportDTO search(String HealthreportId) throws SQLException, ClassNotFoundException;
 
 }

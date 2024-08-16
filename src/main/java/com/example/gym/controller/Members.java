@@ -1,6 +1,7 @@
 package com.example.gym.controller;
 
-import com.example.gym.dto.EquipmentDTO;
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.MemberBO;
 import com.example.gym.dto.MembersDTO;
 import com.example.gym.model.MembersModel;
 import javafx.collections.FXCollections;
@@ -56,6 +57,8 @@ public class Members {
     private TextField txtmemberid;
 
     ObservableList<MembersDTO> observableList = FXCollections.observableArrayList();
+    MemberBO memberBO = (MemberBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.Members);
+
 
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
@@ -201,13 +204,13 @@ public class Members {
 
            var dto = new MembersDTO(memberid, firstname, lastname, age, gender, birth, Email, contactno);
            try {
-               boolean isSaved = MembersModel.saveMembers(dto);
+               boolean isSaved = memberBO.saveMembers(dto);
 
                if (isSaved) {
                    new Alert(Alert.AlertType.CONFIRMATION, "customer saved!").show();
                    clearFields();
                }
-           } catch (SQLException e) {
+           } catch (SQLException | ClassNotFoundException e) {
                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
            }
        }
@@ -231,13 +234,13 @@ public class Members {
         String memberID = txtmemberid.getText();
 
         try {
-            boolean isDeleted = MembersModel.deleteMembers(memberID);
+            boolean isDeleted = memberBO.deleteMembers(memberID);
             if (isDeleted) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member deleted!").show();
             } else {
                 new Alert(Alert.AlertType.CONFIRMATION, "Member not deleted!").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
     }
@@ -266,11 +269,11 @@ public class Members {
         String id = txtmemberid.getText();
 
         try {
-            MembersDTO dto = MembersModel.search(id);
+            MembersDTO dto = memberBO.search(id);
             if(dto!=null){
                 viewCustomerReport(dto);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -341,7 +344,7 @@ public class Members {
         String memberid = txtmemberid.getText();
 
         try {
-            MembersDTO membersDTO= MembersModel.search(memberid);
+            MembersDTO membersDTO= memberBO.search(memberid);
 
             if (membersDTO != null) {
                 txtmemberid.setText(membersDTO.getMemberID());
@@ -356,7 +359,7 @@ public class Members {
                 new Alert(Alert.AlertType.ERROR,"Invalid ID").show();
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -407,7 +410,7 @@ public class Members {
 
         boolean isUpdated = false;
         try {
-            isUpdated = MembersModel.updatemember(new MembersDTO(id, firstname, lastname, age,gender ,birthdate,email,contact));
+            isUpdated = memberBO.updateMembers(new MembersDTO(id, firstname, lastname, age,gender ,birthdate,email,contact));
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully").show();
                 txtmemberid.setText("");
@@ -423,7 +426,7 @@ public class Members {
             } else {
                 new Alert(Alert.AlertType.ERROR, "Update failed").show();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

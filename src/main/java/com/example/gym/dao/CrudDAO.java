@@ -1,5 +1,8 @@
 package com.example.gym.dao;
 
+import com.example.gym.entity.HealthReport;
+import com.example.gym.entity.Instructore;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 

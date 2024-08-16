@@ -11,6 +11,7 @@ public interface EquipmentBO extends SuperBO {
     boolean saveEquipment(EquipmentDTO dto) throws SQLException, ClassNotFoundException;
     boolean updateEquipment(EquipmentDTO dto) throws SQLException, ClassNotFoundException;
     boolean deleteEquipment(String id) throws SQLException, ClassNotFoundException;
+    EquipmentDTO search(String EquipmentId) throws SQLException, ClassNotFoundException;
 
 }
 

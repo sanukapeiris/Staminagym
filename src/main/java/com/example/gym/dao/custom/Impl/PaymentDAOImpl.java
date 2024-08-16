@@ -2,6 +2,7 @@ package com.example.gym.dao.custom.Impl;
 
 import com.example.gym.dao.SQLUtil;
 import com.example.gym.dao.custom.PaymentsDAO;
+import com.example.gym.entity.Instructore;
 import com.example.gym.entity.Payment;
 
 import java.sql.ResultSet;

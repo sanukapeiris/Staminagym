@@ -11,6 +11,6 @@ import java.time.LocalDate;
 public class EquipmentDTO {
     private String Equipmentid ;
     private String Equipmentname;
-    private String Equipmenttype;
+    private String EquipmentQTY;
     private String PurchaseDate ;
 }

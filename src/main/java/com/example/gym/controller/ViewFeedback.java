@@ -1,7 +1,9 @@
 package com.example.gym.controller;
 
+import com.example.gym.bo.BOFactory;
+import com.example.gym.bo.custom.FeedbackBO;
+import com.example.gym.dto.FeedbackDTO;
 import com.example.gym.view.tdm.FeedbackTM;
-import com.example.gym.model.FeedbackModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -31,6 +34,7 @@ public class ViewFeedback implements Initializable{
 
     @FXML
     private TableColumn<?, ?> colFeedbackDate;
+    FeedbackBO feedbackBO = (FeedbackBO) BOFactory.getBOFactory().getBO(BOFactory.BOTypes.FEEDBACK);
     @FXML
     void btnMemberaction(ActionEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/Members.fxml"));
@@ -155,18 +159,19 @@ public class ViewFeedback implements Initializable{
     }
     private void getAll() {
         try {
-            List<FeedbackTM> dtoList = FeedbackModel.getAll();
+            ArrayList<FeedbackDTO> dtoList = feedbackBO.getAllCustomer();
             ObservableList<FeedbackTM> obList = FXCollections.observableArrayList();
 
-            for (FeedbackTM dto : dtoList) {
+            for (FeedbackDTO dto : dtoList) {
                 obList.add(new FeedbackTM(
-                        dto.getFeedbackText(),
-                        dto.getFeedbackDate()
+                        dto.getFeedbackDate(),
+                        dto.getFeedbackText()
+
                 ));
             }
             tblfeedback.setItems(obList);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

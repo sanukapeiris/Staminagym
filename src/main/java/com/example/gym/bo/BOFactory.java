@@ -1,7 +1,10 @@
 package com.example.gym.bo;
 
+import com.example.gym.bo.custom.Impl.*;
 import com.example.gym.dao.SuperDAO;
 import com.example.gym.dao.custom.Impl.*;
+
+import static com.example.gym.dao.DAOFactory.DAOTypes.Inventory;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -11,24 +14,26 @@ public class BOFactory {
         return (boFactory==null)?boFactory=new BOFactory():boFactory;
     }
     public enum BOTypes{
-        EQUIPMENT,FEEDBACK,HEALTHREPORT,Instructore,Members,Payment,Report
+        EQUIPMENT,FEEDBACK,HEALTHREPORT,Instructore,Members,Payment,Report,Inventory
     }
-    public SuperDAO getBO(BOTypes boTypes){
+    public SuperBO getBO(BOTypes boTypes){
         switch (boTypes){
             case EQUIPMENT:
-                return new EquipmentDAOImpl();
+                return new EquipmentBOImpl();
             case FEEDBACK:
-                return new FeedbackDAOImpl();
+                return new FeedbackBOImpl();
             case HEALTHREPORT:
-                return new HealthReportDAOImpl();
+                return new HealthReportImpl();
             case Instructore:
-                return new InstructoreDAOImpl();
+                return new InstructorBOImpl();
             case Members:
-                return new MembersDAOImpl();
+                return new MemberBOImpl();
             case Payment:
-                return new PaymentDAOImpl();
+                return new PamentBOImpl();
             case Report:
-                return new ReportDAOImpl();
+                return new ReportBOImpl();
+            case Inventory:
+                return new InventoryBOImpl();
             default:
                 return null;
         }
